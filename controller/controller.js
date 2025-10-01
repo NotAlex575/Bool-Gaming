@@ -2,21 +2,12 @@ const connection = require('../data/dataBase')
 
 const index = (req, res) => {
   const videogameQuery = 'SELECT * FROM videogames';
-  const detailsQuery = 'SELECT * FROM detail WHERE videogame_id = ?';
 
   connection.query(videogameQuery, (err, results) => {
     if (err) {
       return res.status(500).json({ error: "Errore nella query: " + err });
     }
-    connection.query(videogameQuery, (err, detailsQuery) => {
-      if (err) {
-        return res.status(500).json({ error: "Errore nella query: " + err });
-      }
-    })
-    res.json({
-      videogame: results,
-      details: detailsResults
-    })
+    res.json(results);
   });
 }
 
