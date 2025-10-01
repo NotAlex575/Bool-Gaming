@@ -25,7 +25,7 @@ const Homepage = () => {
           return (
             <div className="col-12 col-md-6 col-lg-4" key={videogame.id}>
               <div className="card">
-                <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top" />
+                <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top object-fit-contain" />
                 <div className="card-body">
                   <p className="card-text">{videogame.title}</p>
                   <span className="card-text">{videogame.types}</span>
