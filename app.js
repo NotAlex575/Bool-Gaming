@@ -7,9 +7,10 @@ const port = process.env.PORT;
 const routers = require('./routes/routers');
 const notFound = require('./middlewares/routesNotFound');
 const error = require('./middlewares/error');
+const imgPathMiddleware = require("./middlewares/imgPathMiddleware")
 
 app.use(express.static('public'))
-
+app.use(imgPathMiddleware)
 app.use(cors());
 app.use(express.json());
 
