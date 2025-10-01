@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT;
 
-const routers = require('./routers/routers');
+const routers = require('./routes/routers');
 const notFound = require('./middlewares/routesNotFound');
 
 app.use(cors());

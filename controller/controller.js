@@ -23,7 +23,7 @@ const show = (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ error: "Post non trovato" });
     }
-
+    res.json(results[0])
   });
 }
 
