@@ -6,6 +6,7 @@ const port = process.env.PORT;
 
 const routers = require('./routes/routers');
 const notFound = require('./middlewares/routesNotFound');
+const error = require('./middlewares/error');
 
 app.use(cors());
 app.use(express.json());
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 app.use('/videogames', routers)
 
 app.use(notFound)
+app.use(error)
 
 app.listen(port, () => {
   console.log(`server in ascolto nella porta ${port}`);
