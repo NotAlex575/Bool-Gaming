@@ -15,7 +15,7 @@ const GeminiChat = ({ videogames, askAI, answer }) => {
         type="text"
         value={question}
         onChange={e => setQuestion(e.target.value)}
-        placeholder="Domanda a Gemini"
+        placeholder="Domanda a gemini"
         className="form-control mb-2 mx-auto"
         style={{ maxWidth: "400px" }}
       />

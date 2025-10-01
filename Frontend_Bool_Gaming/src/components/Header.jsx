@@ -3,7 +3,7 @@ import React from 'react'
 const Header = () => {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-danger">
+      <nav className="navbar navbar-expand-lg bg-danger fixed-top">
         <div className="container-fluid">
           <a className="navbar-brand text-light" href="#">BOOL-GAMING</a>
           <div className='d-flex'>
@@ -15,7 +15,7 @@ const Header = () => {
                 {/* Homepage */}
                 <a className="nav-link text-light" aria-current="page" href="#">Home</a>
                 {/* SearchPage */}
-                <a className="nav-link text-light" href="#">Search Game</a>  
+                <a className="nav-link text-light" href="#">Search Game</a>
                 {/* CartPage */}
                 <a className="nav-link text-light" href="#">Go to cart</a>
               </div>
