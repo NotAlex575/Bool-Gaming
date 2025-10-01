@@ -23,14 +23,14 @@ const Homepage = () => {
         </div>
         {videogames.map(videogame => {
           return(
-            <div className="col-12 col-md-6 col-lg-4" key={videogames.id}> 
+            <div className="col-12 col-md-6 col-lg-4" key={videogame.id}> 
               <div className="card">
-                <img src={videogames.image} className="card-img-top" />
+                <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top" />
                 <div className="card-body">
-                  <p className="card-text">{videogames.title}</p>
-                  <span className="card-text">{videogames.types}</span>
-                  <p className="card-text">{videogames.pegi}</p>
-                  <p className="card-text">{videogames.release_date}</p>
+                  <p className="card-text">{videogame.title}</p>
+                  <span className="card-text">{videogame.types}</span>
+                  <p className="card-text">{videogame.pegi}</p>
+                  <p className="card-text">{videogame.release_date}</p>
                 </div>
               </div>
             </div>
