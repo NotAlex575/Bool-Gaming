@@ -8,6 +8,8 @@ const routers = require('./routes/routers');
 const notFound = require('./middlewares/routesNotFound');
 const error = require('./middlewares/error');
 
+app.use(express.static('public'))
+
 app.use(cors());
 app.use(express.json());
 
