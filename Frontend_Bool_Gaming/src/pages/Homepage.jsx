@@ -17,14 +17,14 @@ const Homepage = () => {
 
   return (
     <div className="container">
-      <div className="row gy-3">
+      <div className="row">
         <div className="col-12">
           <h1>BOOLGAMING</h1>
         </div>
         {videogames.map(videogame => {
           return (
             <div className="col-12 col-md-6 col-lg-4" key={videogame.id}>
-              <div className="card h-100">
+              <div className="card">
                 <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top object-fit-contain" />
                 <div className="card-body">
                   <p className="card-text">{videogame.title}</p>
