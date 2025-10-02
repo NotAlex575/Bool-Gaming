@@ -1,9 +1,14 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-header{
+header {
   color: white;
+}
+
+.card a {
+  text-decoration: none;
+  color: black;
 }
