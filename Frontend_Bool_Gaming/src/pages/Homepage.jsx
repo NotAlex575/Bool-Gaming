@@ -17,7 +17,7 @@ const Homepage = () => {
 
   return (
     <div className="container">
-      <div className="row gy-3">
+      <div className="row">
         <div className="col-12">
           <h1 className="text-center mt-3">BOOLGAMING</h1>
         </div>
@@ -33,12 +33,12 @@ const Homepage = () => {
                   <p className="card-text">{videogame.release_date}</p>
                 </div>
               </div>
-            </div>
+            </div >
           )
         }
         )}
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
 
