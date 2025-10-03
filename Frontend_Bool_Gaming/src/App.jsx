@@ -9,6 +9,7 @@ import Homepage from "./pages/Homepage"
 import SearchPage from "./pages/SearchPage"
 import DetailPage from "./pages/DetailPage"
 import CartPage from "./pages/CartPage"
+import CheckoutPage from "./pages/CheckoutPage"
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/searchpage" element={<SearchPage />} />
             <Route path="/detailpage/:id" element={<DetailPage />} />
             <Route path="/cartpage" element={<CartPage />} />
+            <Route path="/checkoutpage" element={<CheckoutPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
