@@ -15,7 +15,7 @@ function SearchBar({ onSearch }) {
       placeholder="Cerca videogiochi"
       value={question}
       onChange={handleChange}
-      className="form-control mb-3"
+      className="form-control mb-3 mt-5"
     />
   );
 }
