@@ -37,7 +37,7 @@ const Homepage = () => {
           </h5>
         </div>
       </div>
-      <div className="container">
+      <div className="container mt-5">
         <div className="row gy-4">
           {chip.map(c => {
             return (
@@ -47,9 +47,9 @@ const Homepage = () => {
                     <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
                     <div className="card-body">
                       <p className="card-text">{c.title}</p>
-                      <span className="card-text">{c.types}</span>
-                      <p className="card-text">{c.pegi}</p>
-                      <p className="card-text">{c.release_date}</p>
+                      <span className="card-text">Genre: {c.types}</span>
+                      <p className="card-text">Pegi {c.pegi}</p>
+                      <p className="card-text">Release date: {c.release_date?.split("T")[0]}</p>
                     </div>
                   </Link>
                 </div>
