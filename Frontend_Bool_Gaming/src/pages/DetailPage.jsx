@@ -35,11 +35,11 @@ const DetailPage = () => {
           </div>
           <div className="card-body">
             <h2 className="text-center my-3">{videogame.title}</h2>
-            <p className="text-center">{videogame.types}</p>
-            <p className="text-center">{videogame.pegi}</p>
-            <p className="text-center">{videogame.release_date}</p>
-            <p className="text-center">{videogame.description}</p>
-            <p className="text-center">{videogame.price}</p>
+            <p>Genre: {videogame.types}</p>
+            <p>Pegi {videogame.pegi}</p>
+            <p>Release date: {videogame.release_date?.split("T")[0]}</p>
+            <p>Description: {videogame.description}</p>
+            <p>Price: {videogame.price}</p>
           </div>
         </div>
       </div>

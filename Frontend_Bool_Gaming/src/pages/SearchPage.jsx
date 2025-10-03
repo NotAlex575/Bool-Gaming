@@ -29,9 +29,9 @@ const SearchPage = () => {
                   <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
                   <div className="card-body">
                     <p className="card-text">{videogame.title}</p>
-                    <span className="card-text">{videogame.types}</span>
-                    <p className="card-text">{videogame.pegi}</p>
-                    <p className="card-text">{videogame.release_date}</p>
+                    <span className="card-text">Genre: {videogame.types}</span>
+                    <p className="card-text">Pegi {videogame.pegi}</p>
+                    <p className="card-text">Release date: {videogame.release_date?.split("T")[0]}</p>
                   </div>
                 </Link>
               </div>
