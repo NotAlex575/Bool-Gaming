@@ -24,7 +24,7 @@ const SearchPage = () => {
   return (
     <div className="container">
       <div className="row gy-4">
-        <div className="col-12 pt-3">
+        <div className="col-12 p-130">
           <SearchBar onSearch={setSearch} />
         </div>
         <div className="col-12">
