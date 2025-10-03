@@ -46,7 +46,7 @@ const Homepage = () => {
             return (
               <div className="col-12 col-md-6 col-lg-4 text-center" key={c.id}>
                 <div className="card">
-                  <Link to={`/detailpage/${c.id}`}>
+                  <Link to={`/detailpage/${c.slug}`}>
                     <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
                     <div className="card-body">
                       <p className="card-text">{c.title}</p>

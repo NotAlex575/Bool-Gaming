@@ -4,18 +4,20 @@ import { useParams } from "react-router-dom";
 
 const DetailPage = () => {
 
-  const { id } = useParams();
+  const { slug } = useParams();
   const [videogame, setVideogame] = useState([]);
 
+
   const fetchVideogame = () => {
-    axios.get(`http://localhost:3000/videogames/${id}`)
-      .then((resp) => {
-        setVideogame(resp.data)
+    axios.get(`http://localhost:3000/videogames`)
+      .then(res => {
+        const found = res.data.find(f => f.slug === slug);
+        setVideogame(found);
       })
       .catch((err) => console.log(err))
   }
 
-  useEffect(fetchVideogame, [])
+  useEffect(fetchVideogame, [slug])
 
   return (
     <div className="container p-130">

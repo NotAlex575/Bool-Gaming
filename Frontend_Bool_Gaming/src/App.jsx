@@ -21,7 +21,7 @@ function App() {
           <Route element={<Defaultlayout />}>
             <Route path="/" element={<Homepage />} />
             <Route path="/searchpage" element={<SearchPage />} />
-            <Route path="/detailpage/:id" element={<DetailPage />} />
+            <Route path="/detailpage/:slug" element={<DetailPage />} />
             <Route path="/cartpage" element={<CartPage />} />
             <Route path="/checkoutpage" element={<CheckoutPage />} />
           </Route>
