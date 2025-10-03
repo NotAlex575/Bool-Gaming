@@ -39,9 +39,12 @@ const Homepage = () => {
       </div>
       <div className="container mt-5">
         <div className="row gy-4">
+          <div className="col-12 text-center">
+            <h2>Giochi più economici</h2>
+          </div>
           {chip.map(c => {
             return (
-              <div className="col-12 col-md-6 col-lg-4" key={c.id}>
+              <div className="col-12 col-md-6 col-lg-4 text-center" key={c.id}>
                 <div className="card">
                   <Link to={`/detailpage/${c.id}`}>
                     <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
