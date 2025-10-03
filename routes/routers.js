@@ -7,8 +7,10 @@ router.get('/', controller.index);
 
 router.get('/:id', controller.show);
 
-router.post('/', controller.store)
+router.post('/', controller.store);
 
 router.delete('/:id', controller.destroy);
+
+router.put('/:id', controller.update)
 
 module.exports = router;
