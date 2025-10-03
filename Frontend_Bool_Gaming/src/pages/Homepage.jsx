@@ -53,6 +53,7 @@ const Homepage = () => {
                       <span className="card-text">Genre: {c.types}</span>
                       <p className="card-text">Pegi {c.pegi}</p>
                       <p className="card-text">Release date: {c.release_date?.split("T")[0]}</p>
+                      <p className="card-text">Price: {c.price}</p>
                     </div>
                   </Link>
                 </div>
