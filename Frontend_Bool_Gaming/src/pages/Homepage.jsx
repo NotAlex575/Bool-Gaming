@@ -14,9 +14,9 @@ const Homepage = () => {
         const data = response.data;
         setVideogame(data);
 
-        const minPrice = Math.min(...data.map(p => p.price));
+        const minPrice = Math.min(...data.map(p => parseFloat(p.price)));
 
-        const videogameChip = data.filter(p => p.price === minPrice);
+        const videogameChip = data.filter(p => parseFloat(p.price) === minPrice);
 
         setChip(videogameChip);
 
