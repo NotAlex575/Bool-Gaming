@@ -22,6 +22,34 @@
   padding-top: 130px;
 }
 
-.mr-40px{
+.mr-40px {
   margin-right: 40px;
+}
+
+@media (max-width: 1199px) {
+  .hero-bg {
+    background-image: url('../hero.png');
+    height: 500px;
+  }
+}
+
+@media (max-width: 990px) {
+  .hero-bg {
+    background-image: url('../hero.png');
+    height: 400px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-bg {
+    background-image: url('../hero.png');
+    height: 300px;
+  }
+}
+
+@media (max-width: 575px) {
+  .hero-bg {
+    background-image: url('../hero.png');
+    height: 250px;
+  }
 }
