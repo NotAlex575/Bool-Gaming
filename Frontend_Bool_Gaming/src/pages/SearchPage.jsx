@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
 
 const SearchPage = () => {
-  const [videogames, setVideogames] = useState([]);
+  const [videogames, setVideogames] = useState([])
+  const [search, setSearch] = useState("");
 
   const fetchVideogames = () => {
     axios.get("http://localhost:3000/videogames")
@@ -15,13 +17,18 @@ const SearchPage = () => {
 
   useEffect(fetchVideogames, [])
 
+  const filteredGames = videogames.filter(game =>
+    game.title.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="container">
+      <SearchBar onSearch={setSearch} />
       <div className="row gy-4">
         <div className="col-12">
           <h1 className="text-center mt-3">BOOLGAMING</h1>
         </div>
-        {videogames.map(videogame => {
+        {filteredGames.map(videogame => {
           return (
             <div className="col-12 col-md-6 col-lg-4" key={videogame.id}>
               <div className="card">
