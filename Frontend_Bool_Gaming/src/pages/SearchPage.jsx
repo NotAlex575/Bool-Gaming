@@ -34,7 +34,7 @@ const SearchPage = () => {
           return (
             <div className="col-12 col-md-6 col-lg-4 text-center" key={videogame.id}>
               <div className="card">
-                <Link to={`/detailpage/${videogame.id}`}>
+                <Link to={`/detailpage/${videogame.slug}`}>
                   <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
                   <div className="card-body">
                     <p className="card-text">{videogame.title}</p>
