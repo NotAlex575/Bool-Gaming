@@ -33,14 +33,14 @@ const Homepage = () => {
         <div className="text-white">
           <h1 className="mb-4">Benvenuto in BOOLGAMING!</h1>
           <h5>
-            Non vediamo sogni...ma giochi di QUALITA'!
+            Non vendiamo sogni...ma giochi di QUALITA'!
           </h5>
         </div>
       </div>
       <div className="container mt-5">
         <div className="row gy-4">
           <div className="col-12 text-center">
-            <h2>Giochi più economici</h2>
+            <h2>I più economici</h2>
           </div>
           {chip.map(c => {
             return (
