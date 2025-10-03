@@ -23,14 +23,16 @@ const SearchPage = () => {
 
   return (
     <div className="container">
-      <SearchBar onSearch={setSearch} />
       <div className="row gy-4">
+        <div className="col-12 pt-3">
+          <SearchBar onSearch={setSearch} />
+        </div>
         <div className="col-12">
           <h1 className="text-center mt-3">BOOLGAMING</h1>
         </div>
         {filteredGames.map(videogame => {
           return (
-            <div className="col-12 col-md-6 col-lg-4" key={videogame.id}>
+            <div className="col-12 col-md-6 col-lg-4 text-center" key={videogame.id}>
               <div className="card">
                 <Link to={`/detailpage/${videogame.id}`}>
                   <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
