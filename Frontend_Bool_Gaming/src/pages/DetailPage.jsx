@@ -9,16 +9,16 @@ const DetailPage = () => {
 
   const fetchVideogame = () => {
     axios.get(`http://localhost:3000/videogames/${id}`)
-    .then((resp) => {
-      setVideogame(resp.data)
-    })
-    .catch((err) => console.log(err))
+      .then((resp) => {
+        setVideogame(resp.data)
+      })
+      .catch((err) => console.log(err))
   }
 
   useEffect(fetchVideogame, [])
 
   return (
-    <div className="container">
+    <div className="container p-130">
       <div className="row mt-5">
         <div className="col-6">
           <div className="card medium-card">
@@ -28,7 +28,7 @@ const DetailPage = () => {
         <div className="col-6">
           <div className="ratio ratio-16x9">
             <iframe
-              src={videogame.trailer_url?.split("&")[0]} 
+              src={videogame.trailer_url?.split("&")[0]}
               title="YouTube video"
               allowFullScreen
             />
