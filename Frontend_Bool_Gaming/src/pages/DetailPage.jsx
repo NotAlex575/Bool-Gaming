@@ -27,8 +27,10 @@ const DetailPage = () => {
         </div>
         <div className="col-6">
           <div className="ratio ratio-16x9">
-            <iframe src={videogame.trailer_url}
-                title="YouTube video" 
+            <iframe
+              src={videogame.trailer_url?.split("&")[0]} 
+              title="YouTube video"
+              allowFullScreen
             />
           </div>
           <div className="card-body">

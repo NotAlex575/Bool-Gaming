@@ -28,8 +28,8 @@ const show = (req, res) => {
 }
 
 const store = (req, res) => {
-  const { title, types, pegi, release_date, image, price, description, slug, trailer_url } = req.body
 
+  const { title, types, pegi, release_date, image, price, description, slug, trailer_url } = req.body
 
   const sql = 'INSERT INTO videogames (title, types, pegi, release_date, image, price, description, slug, trailer_url) VALUES (?, ?, ?, ?, ?, ?, ? , ? , ?)';
 
@@ -52,12 +52,32 @@ const destroy = (req, res) => {
     if (err) {
       return res.status(500).json({ error: 'Errore nella query: ' + err });
     }
-    if (results.affectedRows === 0) {
+    if (results.length === 0) {
       return res.status(404).json({ error: 'Videogioco non trovato' });
     }
     res.json({ result: 'Videogioco eliminato' });
   });
 }
+
+const update = (req, res) => {
+
+  const id = req.params.id
+  const { title, types, pegi, release_date, image, price, description, slug, trailer_url } = req.body
+
+  const sql = `UPDATE videogames SET title = ?, types = ?, pegi = ?, release_date = ?, image = ?, price = ?, description = ?, slug = ?, trailer_url = ? WHERE id = ?`;
+
+  const data = [title, types, pegi, release_date, image, price, description, slug, trailer_url, id];
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Videogioco non trovato" });
+    }
+    res.json({ result: "Videogioco aggiornato" });
+  });
+};
 
 
 
@@ -65,5 +85,6 @@ module.exports = {
   index,
   show,
   store,
-  destroy
+  destroy,
+  update
 }
