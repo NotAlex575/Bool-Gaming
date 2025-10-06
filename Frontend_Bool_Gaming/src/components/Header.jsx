@@ -1,9 +1,26 @@
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom"
 
 const Header = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname !== "/") return; // attiva solo in homepage
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location]);
+
+  const isHome = location.pathname === "/"
+
   return (
     <header className="fixed-top">
-      <nav className="navbar navbar-expand-lg bg-navbar">
+      <nav className={`navbar navbar-expand-lg transition-all ${isHome ? scrolled ? "bg-navbar shadow-sm" : "bg-transparent" : "bg-navbar shadow-sm"}`}>
         <div className="container-fluid ms-4 me-4">
           <Link to={"/"} className="navbar-brand text-light" href="#">
             <img className="logo" src="../Bool.png" alt="" />
@@ -13,7 +30,7 @@ const Header = () => {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul className="navbar-nav">
+              <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
                   {/* Homepage */}
                   <Link to={"/"} className="nav-link text-light" aria-current="page" href="#"><strong>Home</strong></Link>

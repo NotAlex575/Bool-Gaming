@@ -4,6 +4,23 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Orbitron', sans-serif !important;
+  background-color: #0f0f0f;
+}
+
+.card {
+  border-radius: 0 !important;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.transition-all {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 .card a {
   text-decoration: none;
   color: black;
@@ -18,15 +35,15 @@
   background-position: center;
 }
 
-.borderCard{
+.borderCard {
   border: 2px solid black;
 }
 
-.borderImg{
+.borderImg {
   border: 2px solid black;
 }
 
-.bg-clear{
+.bg-clear {
   background-color: #fffdfd;
 }
 
@@ -49,7 +66,7 @@
 }
 
 .bg-main {
-  background-color: #fc8f4b;
+  background-color: #ba3d03;
 }
 
 
@@ -83,7 +100,7 @@
 }
 
 .footer {
-  background-color: rgb(57, 56, 56);
+  background-color: #000;
   color: #fff;
   padding: 20px 0;
   font-family: Arial, sans-serif;
@@ -127,4 +144,3 @@
   text-align: center;
   font-size: 14px;
 }
-

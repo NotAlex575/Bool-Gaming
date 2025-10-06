@@ -29,7 +29,7 @@ const SearchPage = () => {
           <SearchBar onSearch={setSearch} />
         </div>
         <div className="col-12">
-          <h1 className="text-center mt-3">BOOLGAMING</h1>
+          <h1 className="text-center color-white mt-3">BOOLGAMING</h1>
         </div>
         {filteredGames.map(videogame => {
           return (
