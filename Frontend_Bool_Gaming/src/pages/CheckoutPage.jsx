@@ -18,7 +18,7 @@ const CheckoutPage = () => {
   const total = cart.reduce((acc, item) => acc + item.price, 0);
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row gy-4">
         <div className="col-12">
           <h1 className="text-center mt-3">Checkout</h1>

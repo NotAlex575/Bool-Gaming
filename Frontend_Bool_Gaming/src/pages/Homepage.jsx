@@ -31,6 +31,9 @@ const Homepage = () => {
 
   return (
     <>
+
+
+
       <div className="d-flex justify-content-center align-items-center text-center hero-bg pt-5">
         <div className="text-white pt-5">
           <h1 className="mb-4">Benvenuto in BOOLGAMING!</h1>
@@ -85,6 +88,7 @@ const Homepage = () => {
           )}
         </div>
       </div>
+
     </>
   )
 }
