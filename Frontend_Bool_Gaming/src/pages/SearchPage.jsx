@@ -42,7 +42,7 @@ const SearchPage = () => {
                     <span className="card-text">Genre: {videogame.types}</span>
                     <p className="card-text">Pegi {videogame.pegi}</p>
                     <p className="card-text">Release date: {videogame.release_date?.split("T")[0]}</p>
-                    <p className="card-text">Price: {videogame.price}</p>
+                    <p className="card-text">Price: {videogame.price}€</p>
                   </div>
                 </Link>
               </div>
