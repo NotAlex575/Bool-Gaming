@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const Header = () => {
   return (
-    <header>
+    <header className="fixed-top">
       <nav className="navbar navbar-expand-lg bg-danger">
         <div className="container-fluid p-4">
           <Link to={"/"} className="navbar-brand text-light" href="#">BOOL-GAMING</Link>
@@ -22,7 +22,7 @@ const Header = () => {
                 </li>
                 <li class="nav-item">
                   {/* CartPage */}
-                    <a className="nav-link text-light" href="#">Go to cart</a>
+                  <a className="nav-link text-light" href="#">Go to cart</a>
                 </li>
                 <li class="nav-item dropdown">
                   <ul class="dropdown-menu">
