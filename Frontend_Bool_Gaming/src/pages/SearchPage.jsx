@@ -19,7 +19,7 @@ const SearchPage = () => {
   useEffect(fetchVideogames, [])
 
   const filteredGames = videogames.filter(game =>
-    game.title.toLowerCase().includes(search.toLowerCase())
+    game.title.toLowerCase().includes(search.toLowerCase()) || String(game.pegi).toLowerCase().includes(search)
   );
 
   return (
