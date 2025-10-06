@@ -12,7 +12,7 @@ function SearchBar({ onSearch }) {
   return (
     <input
       type="text"
-      placeholder="Cerca videogiochi o per pegi"
+      placeholder="Cerca videogiochi..."
       value={question}
       onChange={handleChange}
       className="form-control"
