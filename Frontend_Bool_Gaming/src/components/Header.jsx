@@ -4,8 +4,8 @@ const Header = () => {
   return (
     <header className="fixed-top">
       <nav className="navbar navbar-expand-lg bg-danger">
-        <div className="container-fluid p-4">
-          <Link to={"/"} className="navbar-brand text-light" href="#">BOOL-GAMING</Link>
+        <div className="container-fluid p-2">
+          <Link to={"/"} className="navbar-brand text-light" href="#">BOOLGAMING</Link>
           <div>
             <button className="navbar-toggler bg-light mr-40px" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
