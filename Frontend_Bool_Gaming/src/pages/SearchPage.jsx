@@ -1,18 +1,19 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 
 const SearchPage = () => {
   const [videogames, setVideogames] = useState([])
   const [search, setSearch] = useState("");
+  const naviga = useNavigate();
 
   const fetchVideogames = () => {
     axios.get("http://localhost:3000/videogames")
       .then((resp) => {
         setVideogames(resp.data);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => naviga("not-found"))
   };
 
   useEffect(fetchVideogames, [])
