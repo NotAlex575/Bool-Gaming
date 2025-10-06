@@ -21,7 +21,7 @@ const Homepage = () => {
         const videogameChip = data.filter(p => parseFloat(p.price) === minPrice);
         setChip(videogameChip);
 
-        //PEGI UNDER 18
+        //PEGI UNDER 12
         const videogameForKids = data.filter(pegiKid => parseInt(pegiKid.pegi) <= 12);
         setForKid(videogameForKids);
       })
@@ -68,7 +68,7 @@ const Homepage = () => {
       <div className="container mt-5">
         <div className="row gy-4">
           <div className="col-12 text-center my-5">
-            <h2>Under 18</h2>
+            <h2>Under 12</h2>
           </div>
           {forKid.map(c => {
             return (
