@@ -7,25 +7,25 @@ const Header = () => {
         <div className="container-fluid p-4">
           <Link to={"/"} className="navbar-brand text-light" href="#">BOOL-GAMING</Link>
           <div>
-            <button class="navbar-toggler bg-light mr-40px" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+            <button className="navbar-toggler bg-light mr-40px" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
-                <li class="nav-item">
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul className="navbar-nav">
+                <li className="nav-item">
                   {/* Homepage */}
                   <Link to={"/"} className="nav-link text-light" aria-current="page" href="#">Home</Link>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   {/* SearchPage */}
                   <Link to={"/searchpage"} className="nav-link text-light" href="#">Search Game</Link>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   {/* CartPage */}
                   <a className="nav-link text-light" href="#">Go to cart</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <ul class="dropdown-menu">
+                <li className="nav-item dropdown">
+                  <ul className="dropdown-menu">
                     <li><Link to={"/"} className="nav-link text-light" aria-current="page" href="#">Home</Link></li>
                     <li><Link to={"/searchpage"} className="nav-link text-light" href="#">Search Game</Link></li>
                     <li><a className="nav-link text-light" href="#">Go to cart</a></li>
