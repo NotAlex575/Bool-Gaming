@@ -36,13 +36,17 @@ const DetailPage = () => {
               allowFullScreen
             />
           </div>
-          <div className="card-body">
-            <h2 className="text-center my-3">{videogame.title}</h2>
-            <p><strong>Genre:</strong> {videogame.types}</p>
-            <p><strong>Pegi:</strong> {videogame.pegi}</p>
-            <p><strong>Release date:</strong> {videogame.release_date?.split("T")[0]}</p>
-            <p><strong>Description:</strong> {videogame.description}</p>
-            <p><strong>Price:</strong> {videogame.price}€</p>
+          <div className="card-body bg-clear mt-3 shadow">
+            <div className="container">
+              <div className="py-2">
+                <h2 className="text-center mt-4">{videogame.title}</h2>
+                <p><strong>Genre:</strong> {videogame.types}</p>
+                <p><strong>Pegi:</strong> {videogame.pegi}</p>
+                <p><strong>Release date:</strong> {videogame.release_date?.split("T")[0]}</p>
+                <p><strong>Description:</strong> {videogame.description}</p>
+                <p><strong>Price:</strong> {videogame.price}€</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

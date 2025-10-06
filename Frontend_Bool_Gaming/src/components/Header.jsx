@@ -16,21 +16,21 @@ const Header = () => {
               <ul className="navbar-nav">
                 <li className="nav-item">
                   {/* Homepage */}
-                  <Link to={"/"} className="nav-link text-light" aria-current="page" href="#">Home</Link>
+                  <Link to={"/"} className="nav-link text-light" aria-current="page" href="#"><strong>Home</strong></Link>
                 </li>
                 <li className="nav-item">
                   {/* SearchPage */}
-                  <Link to={"/searchpage"} className="nav-link text-light" href="#">Search Game</Link>
+                  <Link to={"/searchpage"} className="nav-link text-light" href="#"><strong>Search Game</strong></Link>
                 </li>
                 <li className="nav-item">
                   {/* CartPage */}
-                  <a className="nav-link text-light" href="#">Go to cart</a>
+                  <a className="nav-link text-light" href="#"><strong>Go to cart</strong></a>
                 </li>
                 <li className="nav-item dropdown">
                   <ul className="dropdown-menu">
-                    <li><Link to={"/"} className="nav-link text-light" aria-current="page" href="#">Home</Link></li>
-                    <li><Link to={"/searchpage"} className="nav-link text-light" href="#">Search Game</Link></li>
-                    <li><a className="nav-link text-light" href="#">Go to cart</a></li>
+                    <li><Link to={"/"} className="nav-link text-light" aria-current="page" href="#"><strong>Home</strong></Link></li>
+                    <li><Link to={"/searchpage"} className="nav-link text-light" href="#"><strong>Search Game</strong></Link></li>
+                    <li><a className="nav-link text-light" href="#"><strong>Go to cart</strong></a></li>
                   </ul>
                 </li>
               </ul>
