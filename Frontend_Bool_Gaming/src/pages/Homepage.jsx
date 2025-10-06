@@ -1,11 +1,12 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Homepage = () => {
 
   const [videogame, setVideogame] = useState([]);
   const [chip, setChip] = useState([]);
+  const naviga = useNavigate();
 
   useEffect(() => {
     axios
@@ -21,9 +22,7 @@ const Homepage = () => {
         setChip(videogameChip);
 
       })
-      .catch(error => {
-        console.error("Errore nel fetch:", error);
-      });
+      .catch(error => naviga("not-found"));
   }, []);
 
 
