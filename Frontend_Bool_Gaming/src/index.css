@@ -73,7 +73,8 @@ body {
 }
 
 .bg-navbar {
-  background-color: rgba(142, 137, 137, 0.7);
+  backdrop-filter: blur(60px) saturate(100%);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .bg-main {
