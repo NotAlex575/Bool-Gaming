@@ -6,7 +6,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg bg-navbar">
         <div className="container-fluid ms-4 me-4">
           <Link to={"/"} className="navbar-brand text-light" href="#">
-            <img className="logo" src="../public/Bool.png" alt="" />
+            <img className="logo" src="../Bool.png" alt="" />
           </Link>
           <div>
             <button className="navbar-toggler bg-light mr-40px" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
