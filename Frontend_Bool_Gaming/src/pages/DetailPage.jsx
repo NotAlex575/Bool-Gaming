@@ -1,11 +1,12 @@
 import axios from "axios"
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DetailPage = () => {
 
   const { slug } = useParams();
   const [videogame, setVideogame] = useState([]);
+  const naviga = useNavigate();
 
 
   const fetchVideogame = () => {
@@ -14,7 +15,7 @@ const DetailPage = () => {
         const found = res.data.find(f => f.slug === slug);
         setVideogame(found);
       })
-      .catch((err) => console.log(err))
+      .catch(error => naviga("not-found"));
   }
 
   useEffect(fetchVideogame, [slug])
