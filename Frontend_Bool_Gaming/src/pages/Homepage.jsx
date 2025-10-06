@@ -51,11 +51,8 @@ const Homepage = () => {
                   <Link to={`/detailpage/${c.slug}`}>
                     <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "400px", width: "100%" }} />
                     <div className="card-body">
-                      <p className="card-text">{c.title}</p>
-                      <span className="card-text">Genre: {c.types}</span>
-                      <p className="card-text">Pegi {c.pegi}</p>
-                      <p className="card-text">Release date: {c.release_date?.split("T")[0]}</p>
-                      <p className="card-text">Price: {c.price}€</p>
+                      <p className="card-text"><strong>{c.title}</strong></p>
+                      <p className="card-text"><strong>Price:</strong> {c.price}€</p>
                     </div>
                   </Link>
                 </div>
@@ -77,11 +74,8 @@ const Homepage = () => {
                   <Link to={`/detailpage/${c.slug}`}>
                     <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "400px", width: "100%" }} />
                     <div className="card-body">
-                      <p className="card-text">{c.title}</p>
-                      <span className="card-text">Genre: {c.types}</span>
-                      <p className="card-text">Pegi {c.pegi}</p>
-                      <p className="card-text">Release date: {c.release_date?.split("T")[0]}</p>
-                      <p className="card-text">Price: {c.price}</p>
+                      <p className="card-text"><strong>{c.title}</strong></p>
+                      <p className="card-text"><strong>Price:</strong> {c.price}€</p>
                     </div>
                   </Link>
                 </div>
