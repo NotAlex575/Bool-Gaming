@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function CartPage() {
@@ -136,7 +137,7 @@ export default function CartPage() {
               </dl>
 
               <div className="d-grid">
-                <button className="btn btn-success btn-lg" disabled={items.length === 0}>Vai al pagamento</button>
+                <Link to={"/checkoutpage"} className="btn btn-success btn-lg" disabled={items.length === 0}>Vai al pagamento</Link>
               </div>
 
               <div className="mt-3 small text-muted">
