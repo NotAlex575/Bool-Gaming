@@ -176,7 +176,412 @@ const updateUser = (req, res) => {
     res.json({ result: "Persona aggiornata" });
   });
 };
+// payment 
+const indexPayment = (req, res) => {
 
+  const sql = 'SELECT * FROM payment';
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    res.json(results);
+  });
+}
+
+const showPayment = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'SELECT * FROM payment WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore della query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json(results[0])
+  });
+}
+
+const storePayment = (req, res) => {
+
+  const { id_oder, payment_method, import: amount, payment_date } = req.body
+
+  const sql = 'INSERT INTO payment (id_oder, payment_method, amount, payment_date ) VALUES (?, ?, ?, ?)';
+
+  const data = [id_oder, payment_method, amount, payment_date]
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    res.status(201).json({ result: 'Pagamento inserito' });
+  })
+};
+
+const destroyPayment = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'DELETE FROM payment WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Pagamento non trovato' });
+    }
+    res.json({ result: 'Pagamento tolto' });
+  });
+}
+
+const updatePayment = (req, res) => {
+
+  const id = req.params.id
+  const { id_oder, payment_method, import: amount, payment_date } = req.body
+
+  const sql = `UPDATE payment SET id_oder = ?, payment_method = ?, amount = ?, payment_date = ? WHERE id = ?`;
+
+  const data = [id_oder, payment_method, amount, payment_date, id];
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json({ result: "Pagamento aggiornato" });
+  });
+};
+// oder_detail
+const indexOderDetail = (req, res) => {
+
+  const sql = 'SELECT * FROM oder_detail';
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    res.json(results);
+  });
+}
+
+const showOderDetail = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'SELECT * FROM oder_detail WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore della query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json(results[0])
+  });
+}
+
+const storeOderDetail = (req, res) => {
+
+  const { id_oder, id_videogames, quantity, unitly_price, product_name, price } = req.body
+
+  const sql = 'INSERT INTO oder_detail (id_oder, id_videogames, quantity, unitly_price, product_name, price) VALUES (?, ?, ?, ?, ?, ?)';
+
+  const data = [id_oder, id_videogames, quantity, unitly_price, product_name, price]
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    res.status(201).json({ result: 'Pagamento inserito' });
+  })
+};
+
+const destroyOderDetail = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'DELETE FROM oder_detail WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Pagamento non trovato' });
+    }
+    res.json({ result: 'Pagamento tolto' });
+  });
+}
+
+const updateOderDetail = (req, res) => {
+
+  const id = req.params.id
+
+  const { id_oder, id_videogames, quantity, unitly_price, product_name, price } = req.body
+
+  const sql = `UPDATE oder_detail SET id_oder = ?, id_videogames = ?, quantity = ?, unitly_price = ?, product_name = ?, price = ? WHERE id = ?`;
+  const data = [id_oder, id_videogames, quantity, unitly_price, product_name, price, id];
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json({ result: "Pagamento aggiornato" });
+  });
+};
+
+// oder
+const indexOder = (req, res) => {
+
+  const sql = 'SELECT * FROM oder';
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    res.json(results);
+  });
+}
+
+const showOder = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'SELECT * FROM oder WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore della query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json(results[0])
+  });
+}
+
+const storeOder = (req, res) => {
+
+  const { id_user, date, state, total } = req.body
+
+  const sql = 'INSERT INTO oder (id_user, date, state, total) VALUES (?, ?, ?, ?)';
+
+  const data = [id_user, date, state, total]
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    res.status(201).json({ result: 'Pagamento inserito' });
+  })
+};
+
+const destroyOder = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'DELETE FROM oder WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Pagamento non trovato' });
+    }
+    res.json({ result: 'Pagamento tolto' });
+  });
+}
+
+const updateOder = (req, res) => {
+
+  const id = req.params.id
+
+  const { id_user, date, state, total } = req.body
+
+  const sql = `UPDATE oder SET id_user = ?, date = ?, state = ?, total = ? WHERE id = ?`;
+  const data = [id_user, date, state, total, id];
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json({ result: "Pagamento aggiornato" });
+  });
+};
+// discont_code
+const indexDiscountCode = (req, res) => {
+
+  const sql = 'SELECT * FROM discont_code';
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    res.json(results);
+  });
+}
+
+const showDiscountCode = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'SELECT * FROM discont_code WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore della query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json(results[0])
+  });
+}
+
+const storeDiscountCode = (req, res) => {
+
+  const { id_oder, code, percentage, start_date, end_date } = req.body
+
+  const sql = 'INSERT INTO discont_code (id_oder, code, percentage, start_date, end_date) VALUES (?, ?, ?, ?, ?)';
+
+  const data = [id_oder, code, percentage, start_date, end_date]
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    res.status(201).json({ result: 'Pagamento inserito' });
+  })
+};
+
+const destroyDiscountCode = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'DELETE FROM discont_code WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Pagamento non trovato' });
+    }
+    res.json({ result: 'Pagamento tolto' });
+  });
+}
+
+const updateDiscountCode = (req, res) => {
+
+  const id = req.params.id
+
+  const { id_oder, code, percentage, start_date, end_date } = req.body
+
+  const sql = `UPDATE discont_code SET id_oder = ?, code = ?, percentage = ?, start_date = ? end_date = ? WHERE id = ?`;
+  const data = [id_oder, code, percentage, start_date, end_date, id];
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json({ result: "Pagamento aggiornato" });
+  });
+};
+
+const indexCheckout = (req, res) => {
+
+  const sql = 'SELECT * FROM checkout';
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    res.json(results);
+  });
+}
+
+const showCheckout = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'SELECT * FROM checkout WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore della query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json(results[0])
+  });
+}
+
+const storeCheckout = (req, res) => {
+
+  const { id_payment, type, detail, list_item } = req.body
+
+  const sql = 'INSERT INTO checkout (id_payment, type, detail, list_item) VALUES (?, ?, ?, ?)';
+
+  const data = [id_payment, type, detail, list_item]
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    res.status(201).json({ result: 'Pagamento inserito' });
+  })
+};
+
+const destroyCheckout = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'DELETE FROM checkout WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Pagamento non trovato' });
+    }
+    res.json({ result: 'Pagamento tolto' });
+  });
+}
+
+const updateCheckout = (req, res) => {
+
+  const id = req.params.id
+
+  const { id_payment, type, detail, list_item } = req.body
+
+  const sql = `UPDATE checkout SET id_payment = ?, type = ?, detail = ?, list_item = ? WHERE id = ?`;
+  const data = [id_payment, type, detail, list_item, id];
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Pagamento non trovato" });
+    }
+    res.json({ result: "Pagamento aggiornato" });
+  });
+};
 
 
 
@@ -194,4 +599,29 @@ module.exports = {
   storeUser,
   destroyUser,
   updateUser,
+  indexPayment,
+  showPayment,
+  storePayment,
+  destroyPayment,
+  updatePayment,
+  indexOderDetail,
+  showOderDetail,
+  storeOderDetail,
+  destroyOderDetail,
+  updateOderDetail,
+  indexOder,
+  showOder,
+  storeOder,
+  destroyOder,
+  updateOder,
+  indexDiscountCode,
+  showDiscountCode,
+  storeDiscountCode,
+  destroyDiscountCode,
+  updateDiscountCode,
+  indexCheckout,
+  showCheckout,
+  storeCheckout,
+  destroyCheckout,
+  updateCheckout,
 }

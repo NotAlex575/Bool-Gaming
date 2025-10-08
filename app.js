@@ -18,8 +18,7 @@ app.get('/', (req, res) => {
   res.send('Server attivo');
 });
 
-app.use('/videogames', routers)
-app.use('/user', routers);
+app.use('/', routers)
 
 app.use(notFound)
 app.use(error)
