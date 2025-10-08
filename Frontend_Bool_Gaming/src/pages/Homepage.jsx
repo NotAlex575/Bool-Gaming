@@ -103,7 +103,7 @@ const Homepage = () => {
                 // VIDEO CARD OFF
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="card">
+                <div className="card card-game">
                   <Link to={`/detailpage/${c.slug}`}>
                     {hoveredCard === c.id ? (
 
