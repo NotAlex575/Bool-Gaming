@@ -27,6 +27,23 @@ const show = (req, res) => {
   });
 }
 
+const slug = (req, res) => {
+  const slug = req.params.slug;
+
+  const sql = 'SELECT * FROM videogames WHERE slug = ?';
+
+  connection.query(sql, [slug], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Videogioco non trovato" });
+    }
+    res.json(results[0]);
+  });
+};
+
+
 const store = (req, res) => {
 
   const { title, types, pegi, release_date, image, price, description, slug, trailer_url } = req.body
@@ -86,5 +103,6 @@ module.exports = {
   show,
   store,
   destroy,
-  update
+  update,
+  slug
 }
