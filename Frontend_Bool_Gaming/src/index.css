@@ -24,6 +24,11 @@ body {
   border-radius: 0 !important;
 }
 
+.card:hover {
+  transition: 0.25s;
+  transform: scale(1.05);
+}
+
 .color-white {
   color: #fff;
 }
