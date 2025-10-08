@@ -96,6 +96,89 @@ const update = (req, res) => {
   });
 };
 
+const indexUser = (req, res) => {
+  const sql = 'SELECT * FROM user';
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    res.json(results);
+  });
+}
+
+const showUser = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'SELECT * FROM user WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore della query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Post non trovato" });
+    }
+    res.json(results[0])
+  });
+}
+
+const storeUser = (req, res) => {
+
+  const { name, email, adress } = req.body
+
+  const sql = 'INSERT INTO user (name, email, adress ) VALUES (?, ?, ?)';
+
+  const data = [name, email, adress]
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    res.status(201).json({ result: 'Persona inserita' });
+  })
+};
+
+const destroyUser = (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = 'DELETE FROM user WHERE id = ?';
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Errore nella query: ' + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Persona non trovata' });
+    }
+    res.json({ result: 'Persona tolta' });
+  });
+}
+
+const updateUser = (req, res) => {
+
+  const id = req.params.id
+  const { name, email, adress } = req.body
+
+  const sql = `UPDATE user SET name = ?, email = ?, adress = ? WHERE id = ?`;
+
+  const data = [name, email, adress, id];
+
+  connection.query(sql, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Persona non trovata" });
+    }
+    res.json({ result: "Persona aggiornata" });
+  });
+};
+
+
+
+
 
 
 module.exports = {
@@ -104,5 +187,10 @@ module.exports = {
   store,
   destroy,
   update,
-  slug
+  slug,
+  indexUser,
+  showUser,
+  storeUser,
+  destroyUser,
+  updateUser,
 }
