@@ -24,7 +24,7 @@ body {
   border-radius: 0 !important;
 }
 
-.card:hover {
+.card-game:hover {
   transition: 0.25s;
   transform: scale(1.05);
 }

@@ -116,9 +116,7 @@ export default function CartPage() {
             </div>
           </div>
 
-          <div className="text-muted small fst-italic">
-            Nota: questo è un mockup front-end. Le regole di calcolo e validazione coupon sono simulate.
-          </div>
+
         </div>
 
         {/* Riepilogo */}

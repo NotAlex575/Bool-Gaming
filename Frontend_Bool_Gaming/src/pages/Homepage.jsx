@@ -53,28 +53,28 @@ const Homepage = () => {
           </div>
           {chip.map(c => {
             return (
-              <div className="col-12 col-md-6 col-lg-4 text-center" 
+              <div className="col-12 col-md-6 col-lg-4 text-center"
                 key={c.id}
                 // VIDEO CARD ON
-                onMouseEnter={() => setHoveredCard(c.id)} 
+                onMouseEnter={() => setHoveredCard(c.id)}
                 // VIDEO CARD OFF
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="card">
+                <div className="card card-game">
                   <Link to={`/detailpage/${c.slug}`}>
                     {hoveredCard === c.id ? (
 
-                    //VIDEO
-                    <iframe 
-                    src={`${c.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
-                    allow="autoplay fullscreen"
-                    title={c.title} 
-                    style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }}/>
-                  ):(
+                      //VIDEO
+                      <iframe
+                        src={`${c.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
+                        allow="autoplay fullscreen"
+                        title={c.title}
+                        style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }} />
+                    ) : (
 
-                    //IMAGE
-                    <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
-                  )}
+                      //IMAGE
+                      <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
+                    )}
                     <div className="card-body">
                       <p className="card-text"><strong>{c.title}</strong></p>
                       <p className="card-text"><strong>Price:</strong> {c.price}€</p>
@@ -94,10 +94,10 @@ const Homepage = () => {
           </div>
           {forKid.map(c => {
             return (
-              <div className="col-12 col-md-6 col-lg-4 text-center" 
+              <div className="col-12 col-md-6 col-lg-4 text-center"
                 key={c.id}
                 // VIDEO CARD ON
-                onMouseEnter={() => setHoveredCard(c.id)} 
+                onMouseEnter={() => setHoveredCard(c.id)}
                 // VIDEO CARD OFF
                 onMouseLeave={() => setHoveredCard(null)}
               >
@@ -106,12 +106,12 @@ const Homepage = () => {
                     {hoveredCard === c.id ? (
 
                       //VIDEO
-                      <iframe 
-                      src={`${c.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
-                      allow="autoplay fullscreen"
-                      title={c.title} 
-                      style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }}/>
-                    ):(
+                      <iframe
+                        src={`${c.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
+                        allow="autoplay fullscreen"
+                        title={c.title}
+                        style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }} />
+                    ) : (
 
                       //IMAGE
                       <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
