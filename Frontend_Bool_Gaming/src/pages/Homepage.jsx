@@ -13,9 +13,11 @@ const Homepage = () => {
 
   const naviga = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     axios
-      .get("http://localhost:3000/videogames")
+      .get(`${API_URL}videogames`)
       .then(response => {
         const data = response.data;
         setVideogame(data);
@@ -67,13 +69,13 @@ const Homepage = () => {
                       //VIDEO
                       <iframe
                         src={`${c.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
-                        allow="autoplay fullscreen"
+                        allow="autoplay"
                         title={c.title}
                         style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }} />
                     ) : (
 
                       //IMAGE
-                      <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
+                      <img src={`${API_URL}img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
                     )}
                     <div className="card-body">
                       <p className="card-text"><strong>{c.title}</strong></p>
@@ -108,13 +110,13 @@ const Homepage = () => {
                       //VIDEO
                       <iframe
                         src={`${c.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
-                        allow="autoplay fullscreen"
+                        allow="autoplay"
                         title={c.title}
                         style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }} />
                     ) : (
 
                       //IMAGE
-                      <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
+                      <img src={`${API_URL}img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
                     )}
                     <div className="card-body">
                       <p className="card-text"><strong>{c.title}</strong></p>
