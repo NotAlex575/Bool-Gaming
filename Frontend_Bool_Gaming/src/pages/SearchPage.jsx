@@ -113,7 +113,7 @@ const SearchPage = () => {
                 // VIDEO CARD OFF
                 onMouseLeave={() => setHoveredCard(null)}
               >
-              <div className="card">
+              <div className="card card-game">
                 <Link to={`/detailpage/${videogame.slug}`}>
                   {hoveredCard === videogame.id ? (
 
