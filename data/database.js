@@ -1,25 +1,21 @@
-// importiamo mysql2
 const mysql = require("mysql2");
 
-// creo la connessione
-const connection = mysql.createConnection(process.env.MYSQL_URL);
-
-connection.connect((err) => {
-    if (err) {
-        console.error('Errore di connessione al database:', err);
-        return;
-    }
-    console.log('Connesso al database MySQL!');
+// Usa un pool invece di una connessione singola
+const pool = mysql.createPool({
+  uri: process.env.MYSQL_URL,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-// stabilisco la connessione al db
-connection.connect((err) => {
-    if (err) {
-        console.log(process.env.DB_USER)
-        console.log(`Errore nella connessione al db: ${err}`);
-    } else {
-        console.log("Connessione al db avvenuta correttamente");
-    }
+// Verifica connessione
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error("❌ Errore nella connessione al database:", err);
+  } else {
+    console.log("✅ Connessione al database MySQL riuscita!");
+    connection.release(); // restituisce la connessione al pool
+  }
 });
 
-module.exports = connection;
+module.exports = pool;
