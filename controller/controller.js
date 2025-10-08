@@ -97,6 +97,7 @@ const update = (req, res) => {
 };
 
 const indexUser = (req, res) => {
+  console.log("indexUser chiamata");
   const sql = 'SELECT * FROM user';
   connection.query(sql, (err, results) => {
     if (err) {
