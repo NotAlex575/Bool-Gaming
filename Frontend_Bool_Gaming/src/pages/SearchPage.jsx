@@ -22,7 +22,7 @@ const SearchPage = () => {
   };
 
   useEffect(fetchVideogames, [])
-  
+
 
   const filteredGames = videogames.filter((game) => {
     const matchesSearch =
@@ -30,12 +30,12 @@ const SearchPage = () => {
       String(game.pegi).includes(search) ||
       game.types.toLowerCase().includes(search.toLowerCase());
 
-      const matchesMinPrice = minPrice === "" || game.price >= parseFloat(minPrice);
-      const matchesMaxPrice = maxPrice === "" || game.price <= parseFloat(maxPrice);
-      const matchesPegi = pegi === "" || String(game.pegi) === pegi;
-      const matchesType = type === "" || game.types.toLowerCase() === type.toLowerCase();
+    const matchesMinPrice = minPrice === "" || game.price >= parseFloat(minPrice);
+    const matchesMaxPrice = maxPrice === "" || game.price <= parseFloat(maxPrice);
+    const matchesPegi = pegi === "" || String(game.pegi) === pegi;
+    const matchesType = type === "" || game.types.toLowerCase() === type.toLowerCase();
 
-      return matchesSearch && matchesMinPrice && matchesMaxPrice && matchesPegi && matchesType;
+    return matchesSearch && matchesMinPrice && matchesMaxPrice && matchesPegi && matchesType;
   });
 
   return (
@@ -44,26 +44,26 @@ const SearchPage = () => {
         <div className="col-12 p-130">
           <SearchBar onSearch={setSearch} />
         </div>
-        <div className="col-12">
+        <div className="col-12 d-flex justify-content-center">
           <div className="bg-white p-4 rounded-2xl shadow-md grid grid-cols-1 md:grid-cols-4 gap-4">
             <input
               type="number"
               placeholder="Prezzo minimo"
               value={minPrice}
               onChange={(e) => setMinPrice(e.target.value)}
-              className="border rounded-xl p-2"
+              className="border rounded-xl p-2 mx-5"
             />
             <input
               type="number"
               placeholder="Prezzo massimo"
               value={maxPrice}
               onChange={(e) => setMaxPrice(e.target.value)}
-              className="border rounded-xl p-2"
+              className="border rounded-xl p-2 me-5"
             />
             <select
               value={pegi}
               onChange={(e) => setPegi(e.target.value)}
-              className="border rounded-xl p-2"
+              className="border rounded-xl p-2 me-5"
             >
               <option value="">PEGI</option>
               <option value="3">3+</option>
@@ -75,7 +75,7 @@ const SearchPage = () => {
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="border rounded-xl p-2"
+              className="border rounded-xl p-2 me-5"
             >
               <option value="">Tipo</option>
               <option value="RPG">RPG</option>
@@ -97,7 +97,7 @@ const SearchPage = () => {
         </div>
         {filteredGames.length === 0 ? (
           <div className="text-center mt-5 text-white">Nessun gioco trovato...</div>
-        ):(
+        ) : (
           filteredGames.map((videogame) => (
             <div className="col-12 col-md-6 col-lg-4 text-center" key={videogame.id}>
               <div className="card">
