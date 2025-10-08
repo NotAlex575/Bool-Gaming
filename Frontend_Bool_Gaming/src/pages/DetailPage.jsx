@@ -8,9 +8,11 @@ const DetailPage = () => {
   const [videogame, setVideogame] = useState([]);
   const naviga = useNavigate();
 
+   const API_URL = import.meta.env.VITE_API_URL;
+
 
   const fetchVideogame = () => {
-    axios.get(`http://localhost:3000/videogames`)
+    axios.get(`${API_URL}videogames`)
       .then(res => {
         const found = res.data.find(f => f.slug === slug);
         setVideogame(found);
@@ -25,7 +27,7 @@ const DetailPage = () => {
       <div className="row mt-5">
         <div className="col-6">
           <div className="card medium-card">
-            <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="img-fluid" />
+            <img src={`${API_URL}img/videogames/${videogame.image}`} className="img-fluid" />
           </div>
         </div>
         <div className="col-6">

@@ -12,13 +12,15 @@ const SearchPage = () => {
 
   const naviga = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [pegi, setPegi] = useState("");
   const [type, setType] = useState("");
 
   const fetchVideogames = () => {
-    axios.get("http://localhost:3000/videogames")
+    axios.get(`${API_URL}videogames`)
       .then((resp) => {
         setVideogames(resp.data);
       })
@@ -118,13 +120,13 @@ const SearchPage = () => {
                     //VIDEO
                     <iframe 
                     src={`${videogame.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
-                    allow="autoplay fullscreen"
+                    allow="autoplay"
                     title={videogame.title} 
                     style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }}/>
                   ):(
 
                     //IMAGE
-                    <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
+                    <img src={`${API_URL}img/videogames/${videogame.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
                   )}
                   <div className="card-body">
                     <p className="card-text"><strong>{videogame.title}</strong></p>

@@ -14,7 +14,6 @@ const Homepage = () => {
   const naviga = useNavigate();
 
   const API_URL = import.meta.env.VITE_API_URL;
-  console.log("API_URL:", API_URL);
 
   useEffect(() => {
     axios
@@ -70,7 +69,7 @@ const Homepage = () => {
                     //VIDEO
                     <iframe 
                     src={`${c.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
-                    allow="autoplay fullscreen"
+                    allow="autoplay"
                     title={c.title} 
                     style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }}/>
                   ):(
@@ -111,7 +110,7 @@ const Homepage = () => {
                       //VIDEO
                       <iframe 
                       src={`${c.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
-                      allow="autoplay fullscreen"
+                      allow="autoplay"
                       title={c.title} 
                       style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }}/>
                     ):(
