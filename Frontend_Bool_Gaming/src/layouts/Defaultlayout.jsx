@@ -4,11 +4,14 @@ import Footer from "../components/Footer"
 
 const Defaultlayout = () => {
   return (
-    <>
-        <Header />
+    <div className="d-flex flex-column min-vh-100">
+      <Header />
+      <main className="flex-grow-1">
+
         <Outlet />
-        <Footer />
-    </>
+      </main>
+      <Footer />
+    </div>
   )
 }
 
