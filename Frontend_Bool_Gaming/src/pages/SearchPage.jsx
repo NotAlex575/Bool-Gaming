@@ -6,6 +6,10 @@ import SearchBar from "../components/SearchBar";
 const SearchPage = () => {
   const [videogames, setVideogames] = useState([])
   const [search, setSearch] = useState("");
+
+  //evento per attivare/disattivare il video quando il mouse sta over sulla card
+  const [hoveredCard, setHoveredCard] = useState(null);
+
   const naviga = useNavigate();
 
   const [minPrice, setMinPrice] = useState("");
@@ -99,15 +103,29 @@ const SearchPage = () => {
           <div className="text-center mt-5 text-white">Nessun gioco trovato...</div>
         ) : (
           filteredGames.map((videogame) => (
-            <div className="col-12 col-md-6 col-lg-4 text-center" key={videogame.id}>
+              <div 
+                className="col-12 col-md-6 col-lg-4 text-center" 
+                key={videogame.id}
+                // VIDEO CARD ON
+                onMouseEnter={() => setHoveredCard(videogame.id)} 
+                // VIDEO CARD OFF
+                onMouseLeave={() => setHoveredCard(null)}
+              >
               <div className="card">
                 <Link to={`/detailpage/${videogame.slug}`}>
-                  <img
-                    src={`http://localhost:3000/img/videogames/${videogame.image}`}
-                    className="card-img-top"
-                    style={{ height: "500px", width: "100%" }}
-                    alt={videogame.title}
-                  />
+                  {hoveredCard === videogame.id ? (
+
+                    //VIDEO
+                    <iframe 
+                    src={`${videogame.trailer_url.split("&")[0]}?autoplay=1&mute=1&controls=0`}
+                    allow="autoplay fullscreen"
+                    title={videogame.title} 
+                    style={{ border: "none", pointerEvents: "none", height: "500px", width: "100%" }}/>
+                  ):(
+
+                    //IMAGE
+                    <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
+                  )}
                   <div className="card-body">
                     <p className="card-text"><strong>{videogame.title}</strong></p>
                     <p className="card-text"><strong>Price:</strong> {videogame.price}€</p>
