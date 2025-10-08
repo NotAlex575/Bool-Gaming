@@ -13,10 +13,6 @@ const SearchPage = () => {
   const [pegi, setPegi] = useState("");
   const [type, setType] = useState("");
 
-  const handleFilterChange = () => {
-    setVideogames({ minPrice, maxPrice, pegi, type });
-  };
-
   const fetchVideogames = () => {
     axios.get("http://localhost:3000/videogames")
       .then((resp) => {
@@ -26,10 +22,21 @@ const SearchPage = () => {
   };
 
   useEffect(fetchVideogames, [])
+  
 
-  const filteredGames = videogames.filter(game =>
-    game.title.toLowerCase().includes(search.toLowerCase()) || String(game.pegi).toLowerCase().includes(search) || game.types.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredGames = videogames.filter((game) => {
+    const matchesSearch =
+      game.title.toLowerCase().includes(search.toLowerCase()) ||
+      String(game.pegi).includes(search) ||
+      game.types.toLowerCase().includes(search.toLowerCase());
+
+      const matchesMinPrice = minPrice === "" || game.price >= parseFloat(minPrice);
+      const matchesMaxPrice = maxPrice === "" || game.price <= parseFloat(maxPrice);
+      const matchesPegi = pegi === "" || String(game.pegi) === pegi;
+      const matchesType = type === "" || game.types.toLowerCase() === type.toLowerCase();
+
+      return matchesSearch && matchesMinPrice && matchesMaxPrice && matchesPegi && matchesType;
+  });
 
   return (
     <div className="container">
@@ -83,24 +90,24 @@ const SearchPage = () => {
               <option value="Stealth">Stealth</option>
               <option value="Survival">Survival</option>
             </select>
-
-            <button
-              onClick={handleFilterChange}
-              className="md:col-span-4 bg-blue-600 text-white rounded-xl p-2 hover:bg-blue-700 transition"
-            >
-              Filtra
-            </button>
           </div>
         </div>
         <div className="col-12">
           <h1 className="text-center color-white mt-3">BOOLGAMING</h1>
         </div>
-        {filteredGames.map(videogame => {
-          return (
+        {filteredGames.length === 0 ? (
+          <div className="text-center mt-5 text-white">Nessun gioco trovato...</div>
+        ):(
+          filteredGames.map((videogame) => (
             <div className="col-12 col-md-6 col-lg-4 text-center" key={videogame.id}>
               <div className="card">
                 <Link to={`/detailpage/${videogame.slug}`}>
-                  <img src={`http://localhost:3000/img/videogames/${videogame.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
+                  <img
+                    src={`http://localhost:3000/img/videogames/${videogame.image}`}
+                    className="card-img-top"
+                    style={{ height: "500px", width: "100%" }}
+                    alt={videogame.title}
+                  />
                   <div className="card-body">
                     <p className="card-text"><strong>{videogame.title}</strong></p>
                     <p className="card-text"><strong>Price:</strong> {videogame.price}€</p>
@@ -108,8 +115,7 @@ const SearchPage = () => {
                 </Link>
               </div>
             </div>
-          )
-        }
+          ))
         )}
       </div>
     </div>
