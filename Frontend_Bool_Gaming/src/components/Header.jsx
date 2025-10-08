@@ -41,13 +41,13 @@ const Header = () => {
                 </li>
                 <li className="nav-item">
                   {/* CartPage */}
-                  <a className="nav-link text-light" href="#"><strong>Go to cart</strong></a>
+                  <Link to={"/cartpage"} className="nav-link text-light" href="#"><strong>Go to cart</strong></Link>
                 </li>
                 <li className="nav-item dropdown">
                   <ul className="dropdown-menu">
                     <li><Link to={"/"} className="nav-link text-light" aria-current="page" href="#"><strong>Home</strong></Link></li>
                     <li><Link to={"/searchpage"} className="nav-link text-light" href="#"><strong>Search Game</strong></Link></li>
-                    <li><a className="nav-link text-light" href="#"><strong>Go to cart</strong></a></li>
+                    <li><Link to={"/cartpage"} className="nav-link text-light" href="#"><strong>Go to cart</strong></Link></li>
                   </ul>
                 </li>
               </ul>
