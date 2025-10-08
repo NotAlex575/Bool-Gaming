@@ -13,9 +13,12 @@ const Homepage = () => {
 
   const naviga = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log("API_URL:", API_URL);
+
   useEffect(() => {
     axios
-      .get("http://localhost:3000/videogames")
+      .get(`${API_URL}videogames`)
       .then(response => {
         const data = response.data;
         setVideogame(data);
@@ -73,7 +76,7 @@ const Homepage = () => {
                   ):(
 
                     //IMAGE
-                    <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
+                    <img src={`${API_URL}img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
                   )}
                     <div className="card-body">
                       <p className="card-text"><strong>{c.title}</strong></p>
@@ -114,7 +117,7 @@ const Homepage = () => {
                     ):(
 
                       //IMAGE
-                      <img src={`http://localhost:3000/img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
+                      <img src={`${API_URL}img/videogames/${c.image}`} className="card-img-top" style={{ height: "500px", width: "100%" }} />
                     )}
                     <div className="card-body">
                       <p className="card-text"><strong>{c.title}</strong></p>
