@@ -1,4 +1,4 @@
-const connection = require('../data/dataBase')
+const connection = require('../data/database')
 
 const index = (req, res) => {
   const sql = 'SELECT * FROM videogames';

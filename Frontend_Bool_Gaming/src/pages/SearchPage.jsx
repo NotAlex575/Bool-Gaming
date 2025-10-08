@@ -57,7 +57,7 @@ const SearchPage = () => {
               placeholder="Prezzo minimo"
               value={minPrice}
               onChange={(e) => setMinPrice(e.target.value)}
-              className="border rounded-xl p-2 mx-5"
+              className="border rounded-xl p-2 me-lg-5 mx-md-1 mx-sm-5"
             />
             <input
               type="number"
