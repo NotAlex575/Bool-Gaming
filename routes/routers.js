@@ -6,10 +6,10 @@ const controller = require('../controller/controller')
 // videogames
 router.get('/', controller.index);
 router.get('/slug/:slug', controller.slug);
-router.get('/:id', controller.show);
 router.post('/', controller.store);
+router.put('/:id', controller.update);
 router.delete('/:id', controller.destroy);
-router.put('/:id', controller.update)
+router.get('/:id', controller.show);
 
 // user
 router.get('/user', controller.indexUser);
