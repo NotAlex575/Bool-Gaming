@@ -95,10 +95,39 @@ body {
   }
 }
 
-@media (max-width: 990px) {
+@media (max-width: 991px) {
+  body {
+    padding-top: 80px
+  }
+
   .hero-bg {
     background-image: url('../hero.png');
     height: 400px;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+  }
+
+  /* blocca lo scroll */
+  .table-responsive {
+    overflow-x: hidden !important;
+  }
+
+  /* forza adattamento collone */
+  .table {
+    width: 100% !important;
+    table-layout: fixed !important;
+    word-wrap: break-word;
+  }
+
+  /* evita che il testo allarghi òa cella */
+  .table th,
+  .table td {
+    white-space: normal !important;
   }
 }
 
