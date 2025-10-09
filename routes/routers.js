@@ -3,6 +3,11 @@ const router = express.Router();
 
 const controller = require('../controller/controller')
 
+
+// Rotta POST per inviare la mail
+router.post("/send-email", controller.sendWelcomeEmail);
+
+
 // VIDEOGAMES
 router.get('/videogames', controller.index);
 router.get('/videogames/slug/:slug', controller.slug);
