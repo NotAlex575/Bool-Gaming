@@ -1,19 +1,12 @@
 import { useEffect, useState } from "react";
 
 export default function WelcomePopup() {
-  const [show, setShow] = useState(false);
+
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const hasVisited = localStorage.getItem("hasVisited");
-    if (!hasVisited) {
-      // Mostra il popup alla prima visita
-      setShow(true);
-      localStorage.setItem("hasVisited", "true");
-    }
-  }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +31,7 @@ export default function WelcomePopup() {
 
   const handleClose = () => setShow(false);
 
-  if (!show) return null;
+
 
   return (
     <>
