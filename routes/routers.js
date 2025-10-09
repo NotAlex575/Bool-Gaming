@@ -26,11 +26,11 @@ router.put('/payment/:id', controller.updatePayment);
 router.delete('/payment/:id', controller.destroyPayment);
 
 // ORDER_DETAIL
-router.get('/order_detail', controller.indexOderDetail);
-router.get('/order_detail/:id', controller.showOderDetail);
-router.post('/order_detail', controller.storeOderDetail);
-router.put('/order_detail/:id', controller.updateOderDetail);
-router.delete('/order_detail/:id', controller.destroyOderDetail);
+router.get('/order_detail', controller.indexOrderDetail);
+router.get('/order_detail/:id', controller.showOrderDetail);
+router.post('/order_detail', controller.storeOrderDetail);
+router.put('/order_detail/:id', controller.updateOrderDetail);
+router.delete('/order_detail/:id', controller.destroyOrderDetail);
 
 // ORDER
 router.get('/order', controller.indexOrder);
