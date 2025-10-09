@@ -1,5 +1,5 @@
 const connection = require('../data/database')
-import nodemailer from "nodemailer";
+const nodemailer = require('nodemailer')
 
 
 const index = (req, res) => {
