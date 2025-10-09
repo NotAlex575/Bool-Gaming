@@ -258,9 +258,9 @@ const updatePayment = (req, res) => {
   });
 };
 // oder_detail
-const indexOderDetail = (req, res) => {
+const indexOrderDetail = (req, res) => {
 
-  const sql = 'SELECT * FROM oder_detail';
+  const sql = 'SELECT * FROM order_detail';
   connection.query(sql, (err, results) => {
     if (err) {
       return res.status(500).json({ error: "Errore nella query: " + err });
@@ -269,11 +269,11 @@ const indexOderDetail = (req, res) => {
   });
 }
 
-const showOderDetail = (req, res) => {
+const showOrderDetail = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'SELECT * FROM oder_detail WHERE id = ?';
+  const sql = 'SELECT * FROM order_detail WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -286,11 +286,11 @@ const showOderDetail = (req, res) => {
   });
 }
 
-const storeOderDetail = (req, res) => {
+const storeOrderDetail = (req, res) => {
 
   const { id_oder, id_videogames, quantity, unitly_price, product_name, price } = req.body
 
-  const sql = 'INSERT INTO oder_detail (id_oder, id_videogames, quantity, unitly_price, product_name, price) VALUES (?, ?, ?, ?, ?, ?)';
+  const sql = 'INSERT INTO order_detail (id_oder, id_videogames, quantity, unitly_price, product_name, price) VALUES (?, ?, ?, ?, ?, ?)';
 
   const data = [id_oder, id_videogames, quantity, unitly_price, product_name, price]
 
@@ -302,11 +302,11 @@ const storeOderDetail = (req, res) => {
   })
 };
 
-const destroyOderDetail = (req, res) => {
+const destroyOrderDetail = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'DELETE FROM oder_detail WHERE id = ?';
+  const sql = 'DELETE FROM order_detail WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -319,13 +319,13 @@ const destroyOderDetail = (req, res) => {
   });
 }
 
-const updateOderDetail = (req, res) => {
+const updateOrderDetail = (req, res) => {
 
   const id = req.params.id
 
   const { id_oder, id_videogames, quantity, unitly_price, product_name, price } = req.body
 
-  const sql = `UPDATE oder_detail SET id_oder = ?, id_videogames = ?, quantity = ?, unitly_price = ?, product_name = ?, price = ? WHERE id = ?`;
+  const sql = `UPDATE order_detail SET id_oder = ?, id_videogames = ?, quantity = ?, unitly_price = ?, product_name = ?, price = ? WHERE id = ?`;
   const data = [id_oder, id_videogames, quantity, unitly_price, product_name, price, id];
 
   connection.query(sql, data, (err, results) => {
@@ -340,9 +340,9 @@ const updateOderDetail = (req, res) => {
 };
 
 // oder
-const indexOder = (req, res) => {
+const indexOrder = (req, res) => {
 
-  const sql = 'SELECT * FROM oder';
+  const sql = 'SELECT * FROM order';
   connection.query(sql, (err, results) => {
     if (err) {
       return res.status(500).json({ error: "Errore nella query: " + err });
@@ -351,11 +351,11 @@ const indexOder = (req, res) => {
   });
 }
 
-const showOder = (req, res) => {
+const showOrder = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'SELECT * FROM oder WHERE id = ?';
+  const sql = 'SELECT * FROM order WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -368,11 +368,11 @@ const showOder = (req, res) => {
   });
 }
 
-const storeOder = (req, res) => {
+const storeOrder = (req, res) => {
 
   const { id_user, date, state, total } = req.body
 
-  const sql = 'INSERT INTO oder (id_user, date, state, total) VALUES (?, ?, ?, ?)';
+  const sql = 'INSERT INTO order (id_user, date, state, total) VALUES (?, ?, ?, ?)';
 
   const data = [id_user, date, state, total]
 
@@ -384,11 +384,11 @@ const storeOder = (req, res) => {
   })
 };
 
-const destroyOder = (req, res) => {
+const destroyOrder = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'DELETE FROM oder WHERE id = ?';
+  const sql = 'DELETE FROM order WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -401,13 +401,13 @@ const destroyOder = (req, res) => {
   });
 }
 
-const updateOder = (req, res) => {
+const updateOrder = (req, res) => {
 
   const id = req.params.id
 
   const { id_user, date, state, total } = req.body
 
-  const sql = `UPDATE oder SET id_user = ?, date = ?, state = ?, total = ? WHERE id = ?`;
+  const sql = `UPDATE order SET id_user = ?, date = ?, state = ?, total = ? WHERE id = ?`;
   const data = [id_user, date, state, total, id];
 
   connection.query(sql, data, (err, results) => {
@@ -423,7 +423,7 @@ const updateOder = (req, res) => {
 // discont_code
 const indexDiscountCode = (req, res) => {
 
-  const sql = 'SELECT * FROM discont_code';
+  const sql = 'SELECT * FROM discount_code';
   connection.query(sql, (err, results) => {
     if (err) {
       return res.status(500).json({ error: "Errore nella query: " + err });
@@ -436,7 +436,7 @@ const showDiscountCode = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'SELECT * FROM discont_code WHERE id = ?';
+  const sql = 'SELECT * FROM discount_code WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -453,7 +453,7 @@ const storeDiscountCode = (req, res) => {
 
   const { id_oder, code, percentage, start_date, end_date } = req.body
 
-  const sql = 'INSERT INTO discont_code (id_oder, code, percentage, start_date, end_date) VALUES (?, ?, ?, ?, ?)';
+  const sql = 'INSERT INTO discount_code (id_oder, code, percentage, start_date, end_date) VALUES (?, ?, ?, ?, ?)';
 
   const data = [id_oder, code, percentage, start_date, end_date]
 
@@ -469,7 +469,7 @@ const destroyDiscountCode = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'DELETE FROM discont_code WHERE id = ?';
+  const sql = 'DELETE FROM discount_code WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -488,7 +488,7 @@ const updateDiscountCode = (req, res) => {
 
   const { id_oder, code, percentage, start_date, end_date } = req.body
 
-  const sql = `UPDATE discont_code SET id_oder = ?, code = ?, percentage = ?, start_date = ? end_date = ? WHERE id = ?`;
+  const sql = `UPDATE discount_code SET id_oder = ?, code = ?, percentage = ?, start_date = ? end_date = ? WHERE id = ?`;
   const data = [id_oder, code, percentage, start_date, end_date, id];
 
   connection.query(sql, data, (err, results) => {
@@ -604,16 +604,16 @@ module.exports = {
   storePayment,
   destroyPayment,
   updatePayment,
-  indexOderDetail,
-  showOderDetail,
-  storeOderDetail,
-  destroyOderDetail,
-  updateOderDetail,
-  indexOder,
-  showOder,
-  storeOder,
-  destroyOder,
-  updateOder,
+  indexOrderDetail,
+  showOrderDetail,
+  storeOrderDetail,
+  destroyOrderDetail,
+  updateOrderDetail,
+  indexOrder,
+  showOrder,
+  storeOrder,
+  destroyOrder,
+  updateOrder,
   indexDiscountCode,
   showDiscountCode,
   storeDiscountCode,
