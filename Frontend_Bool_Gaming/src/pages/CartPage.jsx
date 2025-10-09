@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function CartPage() {
-  const [items, setItems] = useState([
-    { id: 1, title: "Game Title 1 - Deluxe Edition", platform: "PC", price: 19.99, qty: 1, sku: "GT1-DELUXE" },
-    { id: 2, title: "Game Title 2", platform: "Steam Key", price: 9.49, qty: 2, sku: "GT2-STD" },
-  ]);
+  const [items, setItems] = useState([]);
+
+  //PRENDE IL CONTENUTO NEL LOCAL STORAGE DEL CARRELLO
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const formatted = savedCart.map((item, index) => ({
+      id: index + 1,
+      title: item.title,
+      platform: item.genre,
+      price: parseFloat(item.price) || 0,
+      qty: 1,
+    }));
+    setItems(formatted);
+  }, [])
 
   const [promo, setPromo] = useState("");
   const [appliedPromo, setAppliedPromo] = useState(null);
@@ -17,7 +27,16 @@ export default function CartPage() {
     );
   };
 
-  const removeItem = (id) => setItems((prev) => prev.filter((it) => it.id !== id));
+  const removeItem = (id) => {
+    const updated = items.filter((it) => it.id !== id);
+    setItems(updated);
+    const newCart = updated.map(({ title, platform, price }) => ({
+      title,
+      genre: platform,
+      price,
+    }));
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  };
 
   const subtotal = items.reduce((s, it) => s + it.price * it.qty, 0);
   const shipping = subtotal > 49 || subtotal === 0 ? 0 : 2.99;
