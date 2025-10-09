@@ -27,6 +27,7 @@ export default function CartPage() {
     );
   };
 
+  //ELIMINA IL CONTENUTO NEL LOCAL STORAGE DEL SINGOLO GIOCO NEL CARRELLO
   const removeItem = (id) => {
     const updated = items.filter((it) => it.id !== id);
     setItems(updated);
