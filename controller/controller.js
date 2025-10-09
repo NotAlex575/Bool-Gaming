@@ -340,9 +340,9 @@ const updateOrderDetail = (req, res) => {
 };
 
 // oder
-const indexOrder = (req, res) => {
+const indexOrders = (req, res) => {
 
-  const sql = 'SELECT * FROM `order`';
+  const sql = 'SELECT * FROM orders';
   connection.query(sql, (err, results) => {
     if (err) {
       return res.status(500).json({ error: "Errore nella query: " + err });
@@ -351,11 +351,11 @@ const indexOrder = (req, res) => {
   });
 }
 
-const showOrder = (req, res) => {
+const showOrders = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'SELECT * FROM `order` WHERE id = ?';
+  const sql = 'SELECT * FROM orders WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -368,11 +368,11 @@ const showOrder = (req, res) => {
   });
 }
 
-const storeOrder = (req, res) => {
+const storeOrders = (req, res) => {
 
   const { id_user, date, state, total } = req.body
 
-  const sql = 'INSERT INTO `order` (id_user, date, state, total) VALUES (?, ?, ?, ?)';
+  const sql = 'INSERT INTO orders (id_user, date, state, total) VALUES (?, ?, ?, ?)';
 
   const data = [id_user, date, state, total]
 
@@ -384,11 +384,11 @@ const storeOrder = (req, res) => {
   })
 };
 
-const destroyOrder = (req, res) => {
+const destroyOrders = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'DELETE FROM `order` WHERE id = ?';
+  const sql = 'DELETE FROM orders WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -401,13 +401,13 @@ const destroyOrder = (req, res) => {
   });
 }
 
-const updateOrder = (req, res) => {
+const updateOrders = (req, res) => {
 
   const id = req.params.id
 
   const { id_user, date, state, total } = req.body
 
-  const sql = 'UPDATE `order` SET id_user = ?, date = ?, state = ?, total = ? WHERE id = ?';
+  const sql = 'UPDATE orders SET id_user = ?, date = ?, state = ?, total = ? WHERE id = ?';
 
   const data = [id_user, date, state, total, id];
 
@@ -586,9 +586,6 @@ const updateCheckout = (req, res) => {
 };
 
 
-
-
-
 module.exports = {
   index,
   show,
@@ -611,11 +608,11 @@ module.exports = {
   storeOrderDetail,
   destroyOrderDetail,
   updateOrderDetail,
-  indexOrder,
-  showOrder,
-  storeOrder,
-  destroyOrder,
-  updateOrder,
+  indexOrders,
+  showOrders,
+  storeOrders,
+  destroyOrders,
+  updateOrders,
   indexDiscountCode,
   showDiscountCode,
   storeDiscountCode,
@@ -625,5 +622,5 @@ module.exports = {
   showCheckout,
   storeCheckout,
   destroyCheckout,
-  updateCheckout,
+  updateCheckout
 }

@@ -33,11 +33,11 @@ router.put('/order_detail/:id', controller.updateOrderDetail);
 router.delete('/order_detail/:id', controller.destroyOrderDetail);
 
 // ORDER
-router.get('/order', controller.indexOrder);
-router.get('/order/:id', controller.showOrder);
-router.post('/order', controller.storeOrder);
-router.put('/order/:id', controller.updateOrder);
-router.delete('/order/:id', controller.destroyOrder);
+router.get('/orders', controller.indexOrders);
+router.get('/orders/:id', controller.showOrders);
+router.post('/orders', controller.storeOrders);
+router.put('/orders/:id', controller.updateOrders);
+router.delete('/orders/:id', controller.destroyOrders);
 
 // DISCOUNT_CODE
 router.get('/discount_code', controller.indexDiscountCode);

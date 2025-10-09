@@ -7,9 +7,7 @@ const DetailPage = () => {
   const { slug } = useParams();
   const [videogame, setVideogame] = useState([]);
   const naviga = useNavigate();
-
-   const API_URL = import.meta.env.VITE_API_URL;
-
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchVideogame = () => {
     axios.get(`${API_URL}videogames`)
@@ -21,6 +19,19 @@ const DetailPage = () => {
   }
 
   useEffect(fetchVideogame, [slug])
+
+  //AGGIUNGI AL CARRELLO (LO SALVA NEL LOCAL STORE)
+  const addToCart = () => {
+    const cartItem = {
+      title: videogame.title,
+      genre: videogame.types,
+      price: videogame.price,
+    };
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    existingCart.push(cartItem);
+    localStorage.setItem("cart", JSON.stringify(existingCart));
+    alert("Gioco aggiunto al carrello!");
+  };
 
   return (
     <div className="container p-130">
@@ -50,6 +61,9 @@ const DetailPage = () => {
               </div>
             </div>
           </div>
+          <button onClick={addToCart} className="btn btn-success mt-3">
+            Aggiungi al carrello
+          </button>
         </div>
       </div>
     </div>
