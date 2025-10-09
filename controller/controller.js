@@ -1,6 +1,4 @@
 const connection = require('../data/database')
-const nodemailer = require('nodemailer')
-
 
 const index = (req, res) => {
   const sql = 'SELECT * FROM videogames';
@@ -588,47 +586,6 @@ const updateCheckout = (req, res) => {
 };
 
 
-const sendWelcomeEmail = async (req, res) => {
-  const { email } = req.body;
-
-  if (!email) {
-    return res.status(400).json({ error: "Email mancante" });
-  }
-
-  try {
-    // Configura il transporter SMTP (es. Gmail)
-    const transporter = nodemailer.createTransport({
-      service: "Outlook", // puoi usare anche "gmail", "Yahoo", o un SMTP personalizzato
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    // Contenuto dell’email
-    const mailOptions = {
-      from: `"Il Team di BoolGaming" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: "Benvenuto su BoolGaming 🎉",
-      text: `Ciao! Grazie per esserti iscritto. Ti diamo il benvenuto su BoolGaming!`,
-      html: `
-        <h2>Benvenuto 👋</h2>
-        <p>Grazie per averci lasciato la tua email. Siamo felici di averti con noi!</p>
-        <p>– Il Team di BoolGaming 🚀</p>
-      `,
-    };
-
-    // Invio dell’email
-    await transporter.sendMail(mailOptions);
-
-    return res.status(200).json({ success: true, message: "Email inviata con successo" });
-  } catch (error) {
-    console.error("Errore durante l’invio dell’email:", error);
-    return res.status(500).json({ error: "Errore durante l’invio della mail" });
-  }
-};
-
-
 module.exports = {
   index,
   show,
@@ -665,6 +622,5 @@ module.exports = {
   showCheckout,
   storeCheckout,
   destroyCheckout,
-  updateCheckout,
-  sendWelcomeEmail
+  updateCheckout
 }
