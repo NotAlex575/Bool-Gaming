@@ -66,7 +66,7 @@ export default function CartPage() {
     <div className="cart-page container py-5 px-3 px-md-5">
       <div className="row">
         <div className="col-12">
-          <h1 className="cart-title mb-4 text-uppercase fw-bold border-bottom pb-2">Carrello</h1>
+          <h1 className="cart-title mb-4 text-uppercase fw-bold border-bottom pb-2 p-130">Carrello</h1>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ export default function CartPage() {
                 <div className="card-body d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
                   <div>
                     <h6 className="fw-semibold mb-1">{it.title}</h6>
-                    <div className="text-muted small">{it.platform} · SKU: {it.sku}</div>
+                    <div className="text-muted small">{it.platform}</div>
                   </div>
 
                   <div className="d-flex align-items-center gap-3">
