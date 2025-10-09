@@ -342,7 +342,7 @@ const updateOrderDetail = (req, res) => {
 // oder
 const indexOrder = (req, res) => {
 
-  const sql = 'SELECT * FROM order';
+  const sql = 'SELECT * FROM `order`';
   connection.query(sql, (err, results) => {
     if (err) {
       return res.status(500).json({ error: "Errore nella query: " + err });
@@ -355,7 +355,7 @@ const showOrder = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'SELECT * FROM order WHERE id = ?';
+  const sql = 'SELECT * FROM `order` WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -372,7 +372,7 @@ const storeOrder = (req, res) => {
 
   const { id_user, date, state, total } = req.body
 
-  const sql = 'INSERT INTO order (id_user, date, state, total) VALUES (?, ?, ?, ?)';
+  const sql = 'INSERT INTO `order` (id_user, date, state, total) VALUES (?, ?, ?, ?)';
 
   const data = [id_user, date, state, total]
 
@@ -388,7 +388,7 @@ const destroyOrder = (req, res) => {
 
   const id = req.params.id;
 
-  const sql = 'DELETE FROM order WHERE id = ?';
+  const sql = 'DELETE FROM `order` WHERE id = ?';
 
   connection.query(sql, [id], (err, results) => {
     if (err) {
@@ -407,7 +407,8 @@ const updateOrder = (req, res) => {
 
   const { id_user, date, state, total } = req.body
 
-  const sql = `UPDATE order SET id_user = ?, date = ?, state = ?, total = ? WHERE id = ?`;
+  const sql = 'UPDATE `order` SET id_user = ?, date = ?, state = ?, total = ? WHERE id = ?';
+
   const data = [id_user, date, state, total, id];
 
   connection.query(sql, data, (err, results) => {
@@ -488,7 +489,8 @@ const updateDiscountCode = (req, res) => {
 
   const { id_oder, code, percentage, start_date, end_date } = req.body
 
-  const sql = `UPDATE discount_code SET id_oder = ?, code = ?, percentage = ?, start_date = ? end_date = ? WHERE id = ?`;
+  const sql = `UPDATE discount_code SET id_oder = ?, code = ?, percentage = ?, start_date = ?, end_date = ? WHERE id = ?`;
+
   const data = [id_oder, code, percentage, start_date, end_date, id];
 
   connection.query(sql, data, (err, results) => {
