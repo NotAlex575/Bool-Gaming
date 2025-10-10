@@ -5,6 +5,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function CartPage() {
   const [items, setItems] = useState([]);
   const [highlighted, setHighlighted] = useState(null);
+  const [promo, setPromo] = useState("");
+  const [appliedPromo, setAppliedPromo] = useState(null);
+
+  const notifyCartUpdate = () => {
+    window.dispatchEvent(new Event(" cartUpdated"));
+  };
 
   //PRENDE IL CONTENUTO NEL LOCAL STORAGE DEL CARRELLO
   useEffect(() => {
@@ -19,12 +25,10 @@ export default function CartPage() {
     setItems(formatted);
   }, [])
 
-  const [promo, setPromo] = useState("");
-  const [appliedPromo, setAppliedPromo] = useState(null);
 
   const updateQty = (id, delta) => {
-    setItems((prev) =>
-      prev.map((it) => {
+    setItems((prev) => {
+      const updated = prev.map((it) => {
 
         if (it.id === id) {
           if (it.qty === 1 && delta === -1) {
@@ -37,20 +41,38 @@ export default function CartPage() {
           return { ...it, qty: Math.max(1, it.qty + delta) };
         }
         return it;
-      })
-    );
+      });
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(
+          updated.map(({ title, platform, price, qty }) => ({
+            title,
+            genre: platform,
+            price,
+            qty,
+          }))
+        )
+      );
+
+      notifyCartUpdate(); //  notifica Header
+      return updated;
+
+    });
   };
 
   //ELIMINA IL CONTENUTO NEL LOCAL STORAGE DEL SINGOLO GIOCO NEL CARRELLO
   const removeItem = (id) => {
     const updated = items.filter((it) => it.id !== id);
     setItems(updated);
-    const newCart = updated.map(({ title, platform, price }) => ({
+    const newCart = updated.map(({ title, platform, price, qty }) => ({
       title,
       genre: platform,
       price,
+      qty,
     }));
     localStorage.setItem("cart", JSON.stringify(newCart));
+    notifyCartUpdate();
   };
 
   const subtotal = items.reduce((s, it) => s + it.price * it.qty, 0);
