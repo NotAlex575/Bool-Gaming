@@ -81,22 +81,21 @@ const Header = () => {
           <Link to={"/"} className="navbar-brand text-light">
             <img className="logo" src="../Bool.png" alt="Logo" />
           </Link>
+          <div>
+            <button className="navbar-toggler bg-light mr-40px" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul className="navbar-nav ms-auto">
+                {/* condizione per essere visibile solo all'infuori di homepage */}
+                {!isHome && (
 
-          <button
-            className="navbar-toggler bg-light"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+                  <li className="nav-item">
+                    {/* Homepage */}
+                    <Link to={"/"} className="nav-link text-light" aria-current="page" href="#"><strong>Home</strong></Link>
+                  </li>
+                )}
 
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav ms-auto d-flex align-items-end pe-3">
-              {!isHome && (
                 <li className="nav-item">
                   <Link to={"/"} className="nav-link text-light">
                     {isMobile ? (
@@ -107,30 +106,30 @@ const Header = () => {
                   </Link>
                 </li>
               )}
-              <li className="nav-item">
-                <Link to={"/searchpage"} className="nav-link text-light">
-                  {isMobile ? (
-                    <i className="fa-solid fa-magnifying-glass fs-5" title="Search Game"></i>
-                  ) : (
-                    <strong>Search Game</strong>
-                  )}
-                </Link>
-              </li>
-              <li className="nav-item position-relative">
-                <Link to={"/cartpage"} className="nav-link text-light d-flex align-items-center">
-                  {isMobile ? (
-                    <i className="fa-solid fa-cart-shopping fs-5"></i>
-                  ) : (
-                    <strong>Go to cart</strong>
-                  )}
-                  {cartCount > 0 && (
-                    <span className="badge bg-danger ms-1">{cartCount}</span>
-                  )}
-                </Link>
-              </li>
-            </ul>
+                <li className="nav-item">
+                  <Link to={"/searchpage"} className="nav-link text-light">
+                    {isMobile ? (
+                      <i className="fa-solid fa-magnifying-glass fs-5" title="Search Game"></i>
+                    ) : (
+                      <strong>Search Game</strong>
+                    )}
+                  </Link>
+                </li>
+                <li className="nav-item position-relative">
+                  <Link to={"/cartpage"} className="nav-link text-light d-flex align-items-center">
+                    {isMobile ? (
+                      <i className="fa-solid fa-cart-shopping fs-5"></i>
+                    ) : (
+                      <strong>Go to cart</strong>
+                    )}
+                    {cartCount > 0 && (
+                      <span className="badge bg-danger ms-1">{cartCount}</span>
+                    )}
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
       </nav>
     </header>
   );
