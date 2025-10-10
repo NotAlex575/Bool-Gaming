@@ -25,11 +25,21 @@ const DetailPage = () => {
       title: videogame.title,
       genre: videogame.types,
       price: videogame.price,
+      qty: 1
     };
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-    existingCart.push(cartItem);
-    localStorage.setItem("cart", JSON.stringify(existingCart));
 
+    // Leggi il carrello esistente
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    // Controlla se il gioco esiste già
+    const existingItemIndex = existingCart.findIndex(item => item.title === cartItem.title);
+    if (existingItemIndex !== -1) {
+      // Se esiste già, incrementa la quantità
+      existingCart[existingItemIndex].qty = (existingCart[existingItemIndex].qty || 1) + 1;
+    } else {
+      // Se non esiste, aggiungilo normalmente
+      existingCart.push(cartItem);
+    }
+    localStorage.setItem("cart", JSON.stringify(existingCart));
     setSuccessMessage(true);
     setTimeout(() => setSuccessMessage(false), 3000);
   };
