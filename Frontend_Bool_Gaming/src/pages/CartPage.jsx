@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function CartPage() {
   const [items, setItems] = useState([]);
+  const [highlighted, setHighlighted] = useState(null);
 
   //PRENDE IL CONTENUTO NEL LOCAL STORAGE DEL CARRELLO
   useEffect(() => {
@@ -95,7 +96,14 @@ export default function CartPage() {
                     <div className="text-center">
                       <div className="small text-muted">Quantità</div>
                       <div className="btn-group btn-group-sm" role="group">
-                        <button className="btn btn-outline-secondary" onClick={() => updateQty(it.id, -1)}>-</button>
+                        <button className="btn btn-outline-secondary" onClick={() => {
+                          if (it.qty === 1) {
+                            setHighlighted(it.id);
+                            setTimeout(() => setHighlighted(null), 800);
+                          } else {
+                            updateQty(it.id, -1);
+                          }
+                        }} >-</button>
                         <span className="btn btn-light disabled">{it.qty}</span>
                         <button className="btn btn-outline-secondary" onClick={() => updateQty(it.id, 1)}>+</button>
                       </div>
@@ -106,7 +114,7 @@ export default function CartPage() {
                       <div className="fw-bold text-success">{format(it.price * it.qty)}</div>
                     </div>
 
-                    <button className="btn btn-outline-danger btn-sm" onClick={() => removeItem(it.id)}>Rimuovi</button>
+                    <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => removeItem(it.id)}>Rimuovi</button>
                   </div>
                 </div>
               </div>
@@ -122,7 +130,7 @@ export default function CartPage() {
                   <input className="form-control" placeholder="Inserisci codice" value={promo} onChange={(e) => setPromo(e.target.value)} />
                 </div>
                 <div className="col-sm-4 d-grid">
-                  <button className="btn btn-dark" type="submit" disabled={items.length===0}>Applica</button>
+                  <button className="btn btn-dark" type="submit" disabled={items.length === 0}>Applica</button>
                 </div>
                 {appliedPromo && (
                   <div className="col-12 mt-3 small text-muted">

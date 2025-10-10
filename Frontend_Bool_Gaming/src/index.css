@@ -191,3 +191,20 @@ body {
   text-align: center;
   font-size: 14px;
 }
+
+.blink {
+  animation: blinkEffect 0.8s ease-out;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.7);
+}
+
+@keyframes blinkEffect {
+
+  0%,
+  100% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: rgba(220, 53, 69, 0.15);
+  }
+}
