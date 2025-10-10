@@ -40,7 +40,7 @@ const DetailPage = () => {
       existingCart.push(cartItem);
     }
     localStorage.setItem("cart", JSON.stringify(existingCart));
-    window.dispatchEvent(new Event("storage"));
+    window.dispatchEvent(new Event("cartUpdated"));
     setSuccessMessage(true);
     setTimeout(() => setSuccessMessage(false), 3000);
   };
