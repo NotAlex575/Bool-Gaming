@@ -6,6 +6,7 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const isCart = location.pathname === "/cartpage";
   const [cartCount, setCartCount] = useState(0);
 
   const updateCartCount = () => {
@@ -126,21 +127,23 @@ const Header = () => {
                 </Link>
               </li>
 
-              <li className="nav-item position-relative">
-                <Link
-                  to={"/cartpage"}
-                  className="nav-link text-light d-flex align-items-center"
-                >
-                  {isMobile ? (
-                    <i className="fa-solid fa-cart-shopping fs-5"></i>
-                  ) : (
-                    <strong>Go to cart</strong>
-                  )}
-                  {cartCount > 0 && (
-                    <span className="badge bg-danger ms-1">{cartCount}</span>
-                  )}
-                </Link>
-              </li>
+              {!isCart && (
+                <li className="nav-item position-relative">
+                  <Link
+                    to={"/cartpage"}
+                    className="nav-link text-light d-flex align-items-center"
+                  >
+                    {isMobile ? (
+                      <i className="fa-solid fa-cart-shopping fs-5"></i>
+                    ) : (
+                      <strong>Go to cart</strong>
+                    )}
+                    {cartCount > 0 && (
+                      <span className="badge bg-danger ms-1">{cartCount}</span>
+                    )}
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
