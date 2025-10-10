@@ -13,7 +13,7 @@ export default function CartPage() {
       title: item.title,
       platform: item.genre,
       price: parseFloat(item.price) || 0,
-      qty: 1,
+      qty: item.qty || 1
     }));
     setItems(formatted);
   }, [])
@@ -95,7 +95,7 @@ export default function CartPage() {
                     <div className="text-center">
                       <div className="small text-muted">Quantità</div>
                       <div className="btn-group btn-group-sm" role="group">
-                        <button className="btn btn-outline-secondary" onClick={() => updateQty(it.id, -1)}>-</button>
+                        <button className="btn btn-outline-secondary" disabled={ it.qty <= 1 } onClick={() => updateQty(it.id, -1)}>-</button>
                         <span className="btn btn-light disabled">{it.qty}</span>
                         <button className="btn btn-outline-secondary" onClick={() => updateQty(it.id, 1)}>+</button>
                       </div>
@@ -112,7 +112,6 @@ export default function CartPage() {
               </div>
             ))
           )}
-
           {/* Codice sconto */}
           <div className="card mb-4 shadow-sm border-0">
             <div className="card-body">
