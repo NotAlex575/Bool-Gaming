@@ -53,7 +53,7 @@ const store = (req, res) => {
 
   console.log(slug);
 
-  const sql = 'INSERT INTO videogames (title, types, pegi, release_date, image, price, description, trailer_url) VALUES (?, ?, ?, ?, ?, ?, ? , ? , ?)';
+  const sql = 'INSERT INTO videogames (title, types, pegi, release_date, image, price, description, trailer_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 
   const data = [title, types, pegi, release_date, image, price, description, trailer_url]
 
