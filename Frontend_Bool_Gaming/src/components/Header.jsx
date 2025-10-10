@@ -6,12 +6,24 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const [cartCount, setCartCount] = useState(0);
+
+  const updateCartCount = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalQunantity = cart.reduce((sum, item) => sum + (item.Qunantity || 1), 0);
+    setCartCount(totalQunantity);
+  };
+
+  useEffect(() => {
+    const handleStorageChange = () => updateCartCount();
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   useEffect(() => {
     const updateIsMobile = () => {
       const mobile = window.innerWidth <= 991;
       setIsMobile(mobile);
-
       if (mobile) {
         setScrolled(true);
       } else {
@@ -29,7 +41,6 @@ const Header = () => {
         setScrolled(true);
         return;
       }
-
       if (isHome) {
         setScrolled(window.scrollY > 50);
       } else {
@@ -42,6 +53,7 @@ const Header = () => {
 
     updateIsMobile();
     handleScroll();
+    updateCartCount();
 
     return () => {
       window.removeEventListener("resize", updateIsMobile);
@@ -49,16 +61,16 @@ const Header = () => {
     };
   }, [location.pathname, isHome]);
 
+
   return (
     <header className={`${isMobile ? "position-static" : "fixed-top"}`}>
       <nav
-        className={`navbar navbar-expand-lg transition-all ${
-          isHome
-            ? scrolled
-              ? "bg-navbar shadow-sm"
-              : "bg-transparent"
-            : "bg-navbar shadow-sm"
-        }`}
+        className={`navbar navbar-expand-lg transition-all ${isHome
+          ? scrolled
+            ? "bg-navbar shadow-sm"
+            : "bg-transparent"
+          : "bg-navbar shadow-sm"
+          }`}
       >
         <div className="container-fluid ms-4 me-4">
           <Link to={"/"} className="navbar-brand text-light">
@@ -99,12 +111,15 @@ const Header = () => {
                   )}
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to={"/cartpage"} className="nav-link text-light">
+              <li className="nav-item position-relative">
+                <Link to={"/cartpage"} className="nav-link text-light d-flex align-items-center">
                   {isMobile ? (
-                    <i className="fa-solid fa-cart-shopping fs-5" title="Go to cart"></i>
+                    <i className="fa-solid fa-cart-shopping fs-5"></i>
                   ) : (
                     <strong>Go to cart</strong>
+                  )}
+                  {cartCount > 0 && (
+                    <span className="badge bg-danger ms-1">{cartCount}</span>
                   )}
                 </Link>
               </li>
