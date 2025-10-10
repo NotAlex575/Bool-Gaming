@@ -46,7 +46,11 @@ const slug = (req, res) => {
 
 const store = (req, res) => {
 
-  const { title, types, pegi, release_date, image, price, description, slug, trailer_url } = req.body
+  const { title, types, pegi, release_date, image, price, description, trailer_url } = req.body
+
+  const slug = title.toLowerCase().replaceAll(" ", "-");
+
+  console.log(slug);
 
   const sql = 'INSERT INTO videogames (title, types, pegi, release_date, image, price, description, slug, trailer_url) VALUES (?, ?, ?, ?, ?, ?, ? , ? , ?)';
 
