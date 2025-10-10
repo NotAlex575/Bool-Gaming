@@ -158,7 +158,7 @@ export default function CartPage() {
 
               <div className="mt-3 small text-muted text-center">
                 · Acquisti protetti · <br />
-                · Spedizione gratuita su spesa minima di 49€ ·
+                · Spedizione gratuita su spesa minima di 50€ ·
               </div>
             </div>
           </div>
