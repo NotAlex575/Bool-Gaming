@@ -27,8 +27,6 @@ const SearchPage = () => {
       .catch((err) => naviga("not-found"))
   };
 
-  useEffect(fetchVideogames, [])
-
 
   const filteredGames = videogames.filter((game) => {
     const matchesSearch =
@@ -43,6 +41,8 @@ const SearchPage = () => {
 
     return matchesSearch && matchesMinPrice && matchesMaxPrice && matchesPegi && matchesType;
   });
+
+  useEffect(fetchVideogames, [filteredGames])
 
   return (
     <>

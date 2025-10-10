@@ -33,14 +33,12 @@ const Homepage = () => {
         setForKid(videogameForKids);
       })
       .catch(error => naviga("not-found"));
-  }, []);
+  }, [videogame]);
+
 
 
   return (
     <>
-
-
-
       <div className="d-flex justify-content-center align-items-center text-center hero-bg pt-5">
         <div className="color-white pt-5">
           <h1 className="mb-4">Benvenuto in BOOLGAMING!</h1>
