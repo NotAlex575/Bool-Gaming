@@ -24,7 +24,20 @@ export default function CartPage() {
 
   const updateQty = (id, delta) => {
     setItems((prev) =>
-      prev.map((it) => (it.id === id ? { ...it, qty: Math.max(1, it.qty + delta) } : it)).filter(Boolean)
+      prev.map((it) => {
+
+        if (it.id === id) {
+          if (it.qty === 1 && delta === -1) {
+            // evidenzia il pulsante Rimuovi
+            setHighlighted(id);
+            setTimeout(() => setHighlighted(null), 800);
+            return it; // non modificare la quantità
+          }
+
+          return { ...it, qty: Math.max(1, it.qty + delta) };
+        }
+        return it;
+      })
     );
   };
 
