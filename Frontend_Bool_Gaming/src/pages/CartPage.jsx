@@ -122,7 +122,7 @@ export default function CartPage() {
                   <input className="form-control" placeholder="Inserisci codice" value={promo} onChange={(e) => setPromo(e.target.value)} />
                 </div>
                 <div className="col-sm-4 d-grid">
-                  <button className="btn btn-dark" type="submit" disabled={items.length===0}>Applica</button>
+                  <button className="btn btn-dark" type="submit" disabled={items.length === 0}>Applica</button>
                 </div>
                 {appliedPromo && (
                   <div className="col-12 mt-3 small text-muted">
@@ -166,7 +166,7 @@ export default function CartPage() {
 
               <div className="mt-3 small text-muted text-center">
                 · Acquisti protetti · <br />
-                · Spedizione gratuita su spesa minima di 50€ ·
+                · Spedizione gratuita su spesa minima di 49€ ·
               </div>
             </div>
           </div>
