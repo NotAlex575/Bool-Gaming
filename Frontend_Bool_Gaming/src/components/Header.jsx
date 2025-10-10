@@ -11,6 +11,7 @@ const Header = () => {
   const updateCartCount = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const totalQunantity = cart.reduce((sum, item) => sum + (item.Qunantity || 1), 0);
+    window.dispatchEvent(new Event("cartUpdated"));
     setCartCount(totalQunantity);
   };
 
