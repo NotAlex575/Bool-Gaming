@@ -10,15 +10,19 @@ const Header = () => {
 
   const updateCartCount = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const totalQunantity = cart.reduce((sum, item) => sum + (item.Qunantity || 1), 0);
-    window.dispatchEvent(new Event("cartUpdated"));
+    const totalQunantity = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
     setCartCount(totalQunantity);
   };
 
   useEffect(() => {
-    const handleStorageChange = () => updateCartCount();
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    const handleCartUpdate = () => updateCartCount();
+    window.addEventListener("cartUpdated", handleCartUpdate);
+    window.addEventListener("storage", handleCartUpdate);
+    updateCartCount();
+    return () => {
+      window.removeEventListener("cartUpdated", handleCartUpdate);
+      window.removeEventListener("storage", handleCartUpdate);
+    };
   }, []);
 
   useEffect(() => {
