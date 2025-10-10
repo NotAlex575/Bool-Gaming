@@ -1,11 +1,11 @@
-import axios from "axios"
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const DetailPage = () => {
-
   const { slug } = useParams();
   const [videogame, setVideogame] = useState([]);
+  const [successMessage, setSuccessMessage] = useState(false);
   const naviga = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -16,11 +16,10 @@ const DetailPage = () => {
         setVideogame(found);
       })
       .catch(error => naviga("not-found"));
-  }
+  };
 
-  useEffect(fetchVideogame, [slug])
+  useEffect(fetchVideogame, [slug]);
 
-  //AGGIUNGI AL CARRELLO (LO SALVA NEL LOCAL STORE)
   const addToCart = () => {
     const cartItem = {
       title: videogame.title,
@@ -30,7 +29,9 @@ const DetailPage = () => {
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
     existingCart.push(cartItem);
     localStorage.setItem("cart", JSON.stringify(existingCart));
-    alert("Gioco aggiunto al carrello!");
+
+    setSuccessMessage(true);
+    setTimeout(() => setSuccessMessage(false), 3000);
   };
 
   return (
@@ -64,10 +65,26 @@ const DetailPage = () => {
           <button onClick={addToCart} className="btn btn-success mt-3">
             Aggiungi al carrello
           </button>
+
+          <div
+            className={`alert alert-success mt-3 transition-opacity duration-500 ${successMessage ? "opacity-100" : "opacity-0"
+              }`}
+            role="alert"
+          >
+            Gioco aggiunto al carrello!
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default DetailPage
+      <style>
+        {`
+          .transition-opacity {
+            transition: opacity 0.5s ease-in-out;
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
+export default DetailPage;
