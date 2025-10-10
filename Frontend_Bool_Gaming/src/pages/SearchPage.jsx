@@ -60,7 +60,10 @@ const SearchPage = () => {
               type="number"
               placeholder="Prezzo minimo"
               value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
+               onChange={(e) => {
+                const value = e.target.value;
+                setMinPrice(value >= 0 || value === "" ? value : 0);
+              }}
               className="form-control"
             />
           </div>
@@ -69,7 +72,10 @@ const SearchPage = () => {
               type="number"
               placeholder="Prezzo massimo"
               value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setMaxPrice(value >= 0 || value === "" ? value : 0);
+              }}
               className="form-control"
             />
           </div>

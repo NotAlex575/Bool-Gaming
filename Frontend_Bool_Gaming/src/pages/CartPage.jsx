@@ -122,7 +122,7 @@ export default function CartPage() {
                   <input className="form-control" placeholder="Inserisci codice" value={promo} onChange={(e) => setPromo(e.target.value)} />
                 </div>
                 <div className="col-sm-4 d-grid">
-                  <button className="btn btn-dark" type="submit">Applica</button>
+                  <button className="btn btn-dark" type="submit" disabled={items.length===0}>Applica</button>
                 </div>
                 {appliedPromo && (
                   <div className="col-12 mt-3 small text-muted">
@@ -132,8 +132,6 @@ export default function CartPage() {
               </form>
             </div>
           </div>
-
-
         </div>
 
         {/* Riepilogo */}
@@ -153,7 +151,17 @@ export default function CartPage() {
               </dl>
 
               <div className="d-grid">
-                <Link to={"/checkoutpage"} className="btn btn-success btn-lg" disabled={items.length === 0}>Vai al pagamento</Link>
+                {items.length === 0 ? (
+                  //SE IL COSTO TOTALE DEI VIDEOGIOCHI E 0
+                  <button className="btn btn-success btn-lg w-100" disabled>
+                    Vai al pagamento
+                  </button>
+                ) : (
+                  //SE IL COSTO TOTALE DEI VIDEOGIOCHI NON E 0
+                  <Link to="/checkoutpage" className="btn btn-success btn-lg w-100">
+                    Vai al pagamento
+                  </Link>
+                )}
               </div>
 
               <div className="mt-3 small text-muted text-center">
