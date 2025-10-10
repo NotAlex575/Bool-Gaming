@@ -26,10 +26,6 @@ app.use(error)
 
 const path = require('path');
 
-app.get('*', (req, res) => {
-  res.sendFile(Path2D.resolve(__dirname, 'public', 'index.html'));
-});
-
 app.listen(port, () => {
   console.log(`server in ascolto nella porta ${port}`);
 });
