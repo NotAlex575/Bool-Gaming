@@ -46,13 +46,13 @@ const DetailPage = () => {
 
   return (
     <div className="container p-130">
-      <div className="row mt-5">
-        <div className="col-6">
+      <div className="row gy-3 mt-5">
+        <div className="col-12 col-md-6">
           <div className="card medium-card">
             <img src={`${API_URL}img/videogames/${videogame.image}`} className="img-fluid" />
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-12 col-md-6">
           <div className="ratio ratio-16x9">
             <iframe
               src={videogame.trailer_url?.split("&")[0]}
