@@ -156,8 +156,9 @@ export default function CartPage() {
                 <Link to={"/checkoutpage"} className="btn btn-success btn-lg" disabled={items.length === 0}>Vai al pagamento</Link>
               </div>
 
-              <div className="mt-3 small text-muted">
-                Acquisti protetti · Consegna chiave istantanea.
+              <div className="mt-3 small text-muted text-center">
+                · Acquisti protetti · <br />
+                · Spedizione gratuita su spesa minima di 49€ ·
               </div>
             </div>
           </div>
