@@ -13,6 +13,10 @@ const DetailPage = () => {
     axios.get(`${API_URL}videogames`)
       .then(res => {
         const found = res.data.find(f => f.slug === slug);
+        if (!found) {
+          naviga("/not-found", { replace: true });
+          return;
+        }
         setVideogame(found);
       })
       .catch(error => naviga("not-found"));
