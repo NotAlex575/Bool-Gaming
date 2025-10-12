@@ -22,6 +22,7 @@ const homepage = (req, res) => {
 };
 
 const kids = (req, res) => {
+
   const sql = 'SELECT * FROM videogames WHERE pegi <= 12 ORDER BY release_date DESC';
 
   connection.query(sql, (err, results) => {

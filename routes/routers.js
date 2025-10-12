@@ -57,6 +57,6 @@ router.delete('/checkout/:id', controller.destroyCheckout);
 router.get('/homepage', controller.homepage);
 
 // kids
-router.get('/videogames/kids', controller.kids);
+router.get('/kids', controller.kids);
 
 module.exports = router;
