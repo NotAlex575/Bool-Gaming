@@ -17,23 +17,18 @@ const Homepage = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}videogames`)
-      .then(response => {
-        const data = response.data;
-        setVideogame(data);
-
-        //I PIU ECONOMICI
-        const minPrice = Math.min(...data.map(p => parseFloat(p.price)));
-        const videogameChip = data.filter(p => parseFloat(p.price) === minPrice);
-        setChip(videogameChip);
-
-        //PEGI UNDER 12
-        const videogameForKids = data.filter(pegiKid => parseInt(pegiKid.pegi) <= 12);
-        setForKid(videogameForKids);
-      })
+    axios.get(`${API_URL}homepage`).then(response => {
+      setChip(response.data);
+    })
       .catch(error => naviga("not-found"));
-  }, [videogame]);
+  }, []);
+
+  useEffect(() => {
+    axios.get(`${API_URL}kids`).then(response => {
+      setForKid(response.data);
+    })
+      .catch(error => naviga("not-found"));
+  }, []);
 
 
 
