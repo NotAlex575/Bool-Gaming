@@ -11,9 +11,8 @@ const index = (req, res) => {
 }
 
 const homepage = (req, res) => {
-  const sql = `
-    SELECT * FROM videogames WHERE price = (SELECT MIN(price) FROM videogames)
-  `;
+
+  const sql = `SELECT * FROM videogames WHERE price = (SELECT MIN(price) FROM videogames)`;
 
   connection.query(sql, (err, results) => {
     if (err) {

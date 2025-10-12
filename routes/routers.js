@@ -5,7 +5,6 @@ const controller = require('../controller/controller')
 
 // VIDEOGAMES
 router.get('/videogames', controller.index);
-router.get('/videogames/slug/:slug', controller.slug);
 router.get('/videogames/:id', controller.show);
 router.post('/videogames', controller.store);
 router.put('/videogames/:id', controller.update);
@@ -56,7 +55,10 @@ router.delete('/checkout/:id', controller.destroyCheckout);
 // HOMEPAGE 
 router.get('/homepage', controller.homepage);
 
-// kids
+// KIDS
 router.get('/kids', controller.kids);
+
+// SLUG
+router.get('/slug/:slug', controller.slug);
 
 module.exports = router;

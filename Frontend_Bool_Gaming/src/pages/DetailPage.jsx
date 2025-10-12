@@ -10,7 +10,7 @@ const DetailPage = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchVideogame = () => {
-    axios.get(`${API_URL}videogames`)
+    axios.get(`${API_URL}videogames/slug/${slug}`)
       .then(res => {
         const found = res.data.find(f => f.slug === slug);
         setVideogame(found);
