@@ -21,6 +21,17 @@ const homepage = (req, res) => {
   });
 };
 
+const kids = (req, res) => {
+  const sql = 'SELECT * FROM videogames WHERE pegi < 12 ORDER BY release_date DESC';
+
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    res.json(results);
+  });
+};
+
 const show = (req, res) => {
 
   const id = req.params.id;
@@ -642,5 +653,6 @@ module.exports = {
   storeCheckout,
   destroyCheckout,
   updateCheckout,
-  homepage
+  homepage,
+  kids
 }
