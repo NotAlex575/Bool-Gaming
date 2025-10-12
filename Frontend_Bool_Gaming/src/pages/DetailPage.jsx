@@ -10,11 +10,8 @@ const DetailPage = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchVideogame = () => {
-    axios.get(`${API_URL}videogames/slug/${slug}`)
-      .then(res => {
-        const found = res.data.find(f => f.slug === slug);
-        setVideogame(found);
-      })
+    axios.get(`${API_URL}slug/${slug}`)
+      .then(res => setVideogame(res.data))
       .catch(error => naviga("not-found"));
   };
 
