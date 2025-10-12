@@ -10,6 +10,17 @@ const index = (req, res) => {
   });
 }
 
+const homepage = (req, res) => {
+  const sql = 'SELECT * FROM videogames ORDER BY release_date DESC LIMIT 9';
+
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Errore nella query: " + err });
+    }
+    res.json(results);
+  });
+};
+
 const show = (req, res) => {
 
   const id = req.params.id;
@@ -630,5 +641,6 @@ module.exports = {
   showCheckout,
   storeCheckout,
   destroyCheckout,
-  updateCheckout
+  updateCheckout,
+  homepage
 }

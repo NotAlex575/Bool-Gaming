@@ -53,4 +53,7 @@ router.post('/checkout', controller.storeCheckout);
 router.put('/checkout/:id', controller.updateCheckout);
 router.delete('/checkout/:id', controller.destroyCheckout);
 
+// HOMEPAGE 
+router.get('/homepage', controller.homepage);
+
 module.exports = router;
