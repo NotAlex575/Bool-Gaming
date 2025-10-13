@@ -7,6 +7,8 @@ export default function CartPage() {
   const [highlighted, setHighlighted] = useState(null);
   const [promo, setPromo] = useState("");
   const [appliedPromo, setAppliedPromo] = useState(null);
+  const [confirmRemove, setConfirmedRemove] = useState(null);
+  const [disableButton, setDisableButton] = useState(null);
 
   const notifyCartUpdate = () => {
     window.dispatchEvent(new Event(" cartUpdated"));
@@ -141,9 +143,17 @@ export default function CartPage() {
                       <div className="small text-muted">Totale</div>
                       <div className="fw-bold text-success">{format(it.price * it.qty)}</div>
                     </div>
-
-                    <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => removeItem(it.id)}>Rimuovi</button>
+                    <div>
+                      <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} disabled={confirmRemove != null} onClick={() => setConfirmedRemove(it.id)}>Rimuovi</button>
+                    </div>
                   </div>
+                 {confirmRemove === it.id && (
+                  <div className={`alert alert-success mt-3 transition-opacity duration-500 position-absolute top-50 start-50 translate-middle z-index-10 ${confirmRemove ? "opacity-100" : "opacity-0"}`} role="alert">
+                    <p>Sei sicuro di voler rimuovere il gioco?</p>
+                    <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => {removeItem(it.id); setConfirmedRemove(it.id)}}>Si</button>
+                    <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => setConfirmedRemove(null)}>No</button>
+                  </div>
+                )}
                 </div>
               </div>
             ))
@@ -157,7 +167,7 @@ export default function CartPage() {
                   <input className="form-control" placeholder="Inserisci codice" value={promo} onChange={(e) => setPromo(e.target.value)} />
                 </div>
                 <div className="col-sm-4 d-grid">
-                  <button className="btn btn-dark" type="submit" disabled={items.length === 0}>Applica</button>
+                  <button className="btn btn-dark" type="submit" disabled={items.length === 0 || confirmRemove != null}>Applica</button>
                 </div>
                 {appliedPromo && (
                   <div className="col-12 mt-3 small text-muted">
@@ -186,17 +196,11 @@ export default function CartPage() {
               </dl>
 
               <div className="d-grid">
-                {items.length === 0 ? (
-                  //SE IL COSTO TOTALE DEI VIDEOGIOCHI E 0
-                  <button className="btn btn-success btn-lg w-100" disabled>
+                <button className="btn btn-success btn-lg w-100" disabled = {confirmRemove === null || items.length === 0}>
+                    <Link to="/checkoutpage" disabled= {confirmRemove != null}>
                     Vai al pagamento
+                    </Link>
                   </button>
-                ) : (
-                  //SE IL COSTO TOTALE DEI VIDEOGIOCHI NON E 0
-                  <Link to="/checkoutpage" className="btn btn-success btn-lg w-100">
-                    Vai al pagamento
-                  </Link>
-                )}
               </div>
 
               <div className="mt-3 small text-muted text-center">
