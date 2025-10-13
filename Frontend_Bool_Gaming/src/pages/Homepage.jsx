@@ -72,7 +72,7 @@ const Homepage = () => {
                     )}
                     <div className="card-body">
                       <p className="card-text"><strong>{c.title}</strong></p>
-                      <p className="card-text"><strong>Price:</strong> {c.price}€</p>
+                      <p className="card-text"><strong>Prezzo:</strong> {c.price}€</p>
                     </div>
                   </Link>
                 </div>
