@@ -54,11 +54,13 @@ const SearchPage = () => {
         </div>
       </div>
       <div className="container pt-5 d-flex justify-content-center align-items-center">
-        <div className="bg-white p-4 rounded-4 shadow-lg row g-3">
+        <div className="bg-white p-4 rounded-4 shadow-lg row g-3 align-items-end">
           <div className="col-12 col-md-3">
+            <label htmlFor="minPrice" className="form-label fw-bold">Prezzo minimo</label>
             <input
+              id="minPrice"
               type="number"
-              placeholder="Prezzo minimo"
+              placeholder="Inserisci prezzo minimo"
               value={minPrice}
               onChange={(e) => {
                 const value = e.target.value;
@@ -68,9 +70,11 @@ const SearchPage = () => {
             />
           </div>
           <div className="col-12 col-md-3">
+            <label htmlFor="maxPrice" className="form-label fw-bold">Prezzo massimo</label>
             <input
+              id="maxPrice"
               type="number"
-              placeholder="Prezzo massimo"
+              placeholder="Inserisci prezzo massimo"
               value={maxPrice}
               onChange={(e) => {
                 const value = e.target.value;
@@ -80,12 +84,14 @@ const SearchPage = () => {
             />
           </div>
           <div className="col-12 col-md-3">
+            <label htmlFor="pegi" className="form-label fw-bold">Classificazione PEGI</label>
             <select
+              id="pegi"
               value={pegi}
               onChange={(e) => setPegi(e.target.value)}
               className="form-select"
             >
-              <option value="">PEGI</option>
+              <option value="">Tutti</option>
               <option value="3">3+</option>
               <option value="7">7+</option>
               <option value="12">12+</option>
@@ -94,12 +100,14 @@ const SearchPage = () => {
             </select>
           </div>
           <div className="col-12 col-md-3">
+            <label htmlFor="type" className="form-label fw-bold">Genere</label>
             <select
+              id="type"
               value={type}
               onChange={(e) => setType(e.target.value)}
               className="form-select"
             >
-              <option value="">Tipo</option>
+              <option value="">Tutti</option>
               <option value="RPG">RPG</option>
               <option value="Action">Action</option>
               <option value="Adventure">Adventure</option>
@@ -112,6 +120,21 @@ const SearchPage = () => {
               <option value="Stealth">Stealth</option>
               <option value="Survival">Survival</option>
             </select>
+          </div>
+          <div className="col-12 text-center pt-3">
+            <button
+              type="button"
+              className="btn btn-outline-danger px-4 fw-bold"
+              onClick={() => {
+                setMinPrice("");
+                setMaxPrice("");
+                setPegi("");
+                setType("");
+                setSearch("");
+              }}
+            >
+              Reset filtri
+            </button>
           </div>
         </div>
       </div>
