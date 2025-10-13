@@ -1,7 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
+require('dotenv').config();
+const path = require('path');
+
 const app = express();
+const port = process.env.PORT || 3001;
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static('public'));
 
 const transporter = nodemailer.createTransport({
   host: "sandbox.smtp.mailtrap.io",
@@ -11,12 +19,10 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 });
+
 transporter.verify((error, success) => {
-  if (error) {
-    console.error(" Errore connessione SMTP:", error);
-  } else {
-    console.log("Server SMTP pronto per inviare email");
-  }
+  if (error) console.error("❌ Errore connessione SMTP:", error);
+  else console.log("✅ Server SMTP pronto per inviare email");
 });
 
 app.post("/api/subscribe", async (req, res) => {
@@ -27,10 +33,9 @@ app.post("/api/subscribe", async (req, res) => {
   }
 
   try {
-    // Invia l'email
     const info = await transporter.sendMail({
-      from: '"Il mio sito" no-reply@tuodominio.com', // mittente
-      to: email,                                      // destinatario
+      from: '"Il mio sito" <no-reply@tuodominio.com>',
+      to: email,
       subject: "Benvenuto!",
       html: `<h1>Ciao ${email}!</h1><p>Grazie per esserti iscritto al nostro sito 🎉</p>`,
     });
@@ -43,29 +48,17 @@ app.post("/api/subscribe", async (req, res) => {
   }
 });
 
-const port = process.env.PORT;
 
 const routers = require('./routes/routers');
 const notFound = require('./middlewares/routesNotFound');
 const error = require('./middlewares/error');
 
+app.use('/', routers);
+app.use(notFound);
+app.use(error);
 
-app.use(express.static('public'))
-
-app.use(cors());
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('Server attivo');
-});
-
-app.use('/', routers)
-
-app.use(notFound)
-app.use(error)
-
-const path = require('path');
+app.get('/', (req, res) => res.send('Server attivo'));
 
 app.listen(port, () => {
-  console.log(`server in ascolto nella porta ${port}`);
+  console.log(`🚀 Server in ascolto sulla porta ${port}`);
 });
