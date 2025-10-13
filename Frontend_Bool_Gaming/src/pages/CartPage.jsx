@@ -8,7 +8,6 @@ export default function CartPage() {
   const [promo, setPromo] = useState("");
   const [appliedPromo, setAppliedPromo] = useState(null);
   const [confirmRemove, setConfirmedRemove] = useState(null);
-  const [disableButton, setDisableButton] = useState(null);
 
   const notifyCartUpdate = () => {
     window.dispatchEvent(new Event(" cartUpdated"));
@@ -150,7 +149,7 @@ export default function CartPage() {
                  {confirmRemove === it.id && (
                   <div className={`alert alert-success mt-3 transition-opacity duration-500 position-absolute top-50 start-50 translate-middle z-index-10 ${confirmRemove ? "opacity-100" : "opacity-0"}`} role="alert">
                     <p>Sei sicuro di voler rimuovere il gioco?</p>
-                    <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => {removeItem(it.id); setConfirmedRemove(it.id)}}>Si</button>
+                    <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => {removeItem(it.id); setConfirmedRemove(null)}}>Si</button>
                     <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => setConfirmedRemove(null)}>No</button>
                   </div>
                 )}
@@ -196,7 +195,7 @@ export default function CartPage() {
               </dl>
 
               <div className="d-grid">
-                <button className="btn btn-success btn-lg w-100" disabled = {confirmRemove === null || items.length === 0}>
+                <button className="btn btn-success btn-lg w-100" disabled = {items.length === 0 || confirmRemove != null}>
                     <Link to="/checkoutpage" disabled= {confirmRemove != null}>
                     Vai al pagamento
                     </Link>
