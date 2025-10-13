@@ -118,7 +118,7 @@ const SearchPage = () => {
       <div className="container">
         <div className="row gy-4">
           <div className="col-12">
-            <h1 className="text-center color-white mt-3">BOOLGAMING</h1>
+            <h1 className="text-center color-white mt-3"><strong>BOOLGAMING</strong></h1>
           </div>
           {filteredGames.length === 0 ? (
             <div className="text-center mt-5 text-white">Nessun gioco trovato...</div>
