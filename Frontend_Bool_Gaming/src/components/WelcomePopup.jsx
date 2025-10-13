@@ -1,13 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function WelcomePopup() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [variant, setVariant] = useState("success");
+
+  // Mostra popup dopo 3 secondi se non già mostrato nella sessione
+  useEffect(() => {
+    const popupShown = sessionStorage.getItem("welcomePopupShown");
+    if (!popupShown) {
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+        sessionStorage.setItem("welcomePopupShown", "true");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email) return setMessage("Inserisci un’email valida!");
+    if (!email) {
+      setMessage("Inserisci un’email valida!");
+      setVariant("danger");
+      return;
+    }
 
     try {
       const res = await fetch(`https://bool-gaming-backend-nu.vercel.app/subscribe`, {
@@ -19,56 +36,51 @@ export default function WelcomePopup() {
 
       if (data.success) {
         setMessage("✅ Email inviata correttamente!");
+        setVariant("success");
       } else {
         setMessage(`❌ Errore: ${data.error || data.message}`);
+        setVariant("danger");
       }
     } catch (err) {
       setMessage(`❌ Errore: ${err.message}`);
+      setVariant("danger");
     }
   };
 
-  if (!showPopup) return null;
-
   return (
-    <div style={popupStyles.overlay}>
-      <div style={popupStyles.container}>
-        <h2>Iscriviti alla newsletter</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="La tua email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button type="submit">Iscriviti</button>
-        </form>
-        {message && <p>{message}</p>}
-        <button onClick={() => setShowPopup(false)}>Chiudi</button>
-      </div>
-    </div>
+    <>
+      {showPopup && (
+        <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header bg-main">
+                <h5 className="modal-title text-white">Iscriviti alla newsletter</h5>
+                <button type="button" className="btn-close" onClick={() => setShowPopup(false)}></button>
+              </div>
+              <div className="modal-body">
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="La tua email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-warning w-100">Iscriviti</button>
+                </form>
+                {message && (
+                  <div className={`alert mt-3 alert-${variant}`} role="alert">
+                    {message}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
-
 }
-
-const popupStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    background: "rgba(0,0,0,0.5)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  container: {
-    background: "#fff",
-    padding: "2rem",
-    borderRadius: "10px",
-    maxWidth: "400px",
-    width: "90%",
-    textAlign: "center",
-  },
-};
