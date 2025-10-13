@@ -105,7 +105,7 @@ const Header = () => {
                   <Link to={"/"} className="nav-link text-light">
                     {isMobile ? (
                       <i
-                        className="fa-solid fa-house fs-5"
+                        className="fa-solid fa-house fs-5 fw-bold"
                         title="Home"
                       ></i>
                     ) : (
@@ -120,7 +120,7 @@ const Header = () => {
                   <Link to={"/searchpage"} className="nav-link text-light">
                     {isMobile ? (
                       <i
-                        className="fa-solid fa-magnifying-glass fs-5"
+                        className="fa-solid fa-magnifying-glass fs-5 "
                         title="Search Game"
                       ></i>
                     ) : (

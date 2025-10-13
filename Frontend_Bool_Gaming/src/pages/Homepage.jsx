@@ -44,7 +44,7 @@ const Homepage = () => {
       <div className="container mt-5">
         <div className="row gy-4">
           <div className="col-12 text-center my-5">
-            <h2 className="text-white">I più economici</h2>
+            <h2 className="text-white fw-bold">I più economici</h2>
           </div>
           {chip.map(c => {
             return (
@@ -85,7 +85,7 @@ const Homepage = () => {
       <div className="container mt-5">
         <div className="row gy-4">
           <div className="col-12 text-center my-5">
-            <h2 className="text-white">PEGI 12</h2>
+            <h2 className="text-white fw-bold">PEGI 12</h2>
           </div>
           {forKid.map(c => {
             return (
