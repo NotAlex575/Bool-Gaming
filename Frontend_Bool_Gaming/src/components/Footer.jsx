@@ -29,7 +29,7 @@ const Footer = () => {
             <h5 className="text-uppercase mb-3">Seguici</h5>
             <div className="d-flex justify-content-center gap-3">
               <a href="https://facebook.com/" className="text-light fs-4"><i className="fa-brands fa-facebook"></i></a>
-              <a href="https://twitter.com/" className="text-light fs-4"><i className="fa-brands fa-twitter"></i></a>
+              <a href="https://twitter.com/" className="text-light fs-4"><i className="fa-brands fa-x-twitter"></i></a>
               <a href="https://instagram.com/" className="text-light fs-4"><i className="fa-brands fa-instagram"></i></a>
             </div>
           </div>
