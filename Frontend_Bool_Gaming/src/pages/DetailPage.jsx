@@ -62,11 +62,11 @@ const DetailPage = () => {
             <div className="container">
               <div className="py-2">
                 <h2 className="text-center mt-4">{videogame.title}</h2>
-                <p><strong>Genre:</strong> {videogame.types}</p>
+                <p><strong>Genere:</strong> {videogame.types}</p>
                 <p><strong>Pegi:</strong> {videogame.pegi}</p>
-                <p><strong>Release date:</strong> {videogame.release_date?.split("T")[0]}</p>
-                <p><strong>Description:</strong> {videogame.description}</p>
-                <p><strong>Price:</strong> {videogame.price}€</p>
+                <p><strong>Data d'uscita:</strong> {videogame.release_date?.split("T")[0]}</p>
+                <p><strong>Descrizione:</strong> {videogame.description}</p>
+                <p><strong>Prezzo:</strong> {videogame.price}€</p>
               </div>
             </div>
           </div>
