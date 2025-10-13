@@ -91,11 +91,17 @@ export default function CartPage() {
   const applyPromo = (e) => {
     e.preventDefault();
     const code = promo.trim().toUpperCase();
-    if (!code) return;
+
+    if (!code) {
+      setAppliedPromo({ code: "", desc: "Inserisci un codice valido" });
+      return;
+    }
+
     if (code === "SAVE10") setAppliedPromo({ code: "SAVE10", desc: "10% fino a 10€" });
     else if (code === "5OFF") setAppliedPromo({ code: "5OFF", desc: "5€ di sconto" });
     else setAppliedPromo({ code: code, desc: "Coupon non valido" });
   };
+
 
   const format = (v) => v.toFixed(2) + " €";
 
@@ -147,7 +153,7 @@ export default function CartPage() {
                     </div>
                   </div>
                   {confirmRemove === it.id && (
-                    <div className={`alert alert-success alert-remove transition-opacity duration-500 ${confirmRemove ? "opacity-100" : "opacity-0"}`}role="alert">
+                    <div className={`alert alert-success alert-remove transition-opacity duration-500 ${confirmRemove ? "opacity-100" : "opacity-0"}`} role="alert">
                       <p>Sei sicuro di voler rimuovere il gioco?</p>
                       <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => { removeItem(it.id); setConfirmedRemove(null) }}>Si</button>
                       <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => setConfirmedRemove(null)}>No</button>
@@ -163,7 +169,16 @@ export default function CartPage() {
               <h5 className="fw-bold">Hai un codice sconto?</h5>
               <form className="row g-2 mt-2" onSubmit={applyPromo}>
                 <div className="col-sm-8">
-                  <input className="form-control" placeholder="Inserisci codice" value={promo} onChange={(e) => setPromo(e.target.value)} />
+                  <input
+                    className="form-control"
+                    placeholder="Inserisci codice"
+                    value={promo}
+                    onChange={(e) => {
+                      setPromo(e.target.value);
+                      if (appliedPromo) setAppliedPromo(null);
+                    }}
+                  />
+
                 </div>
                 <div className="col-sm-4 d-grid">
                   <button className="btn btn-dark" type="submit" disabled={items.length === 0 || confirmRemove != null}>Applica</button>
