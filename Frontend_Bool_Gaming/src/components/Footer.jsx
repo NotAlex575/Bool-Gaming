@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -9,18 +10,18 @@ const Footer = () => {
           <div className="col-12 col-md-4 mb-4">
             <h5 className="text-uppercase mb-3">Informazioni</h5>
             <ul className="list-unstyled">
-              <li><a href="/about" className="text-light text-decoration-none d-block mb-1">Chi siamo</a></li>
-              <li><a href="/contact" className="text-light text-decoration-none d-block mb-1">Contatti</a></li>
-              <li><a href="/faq" className="text-light text-decoration-none d-block">FAQ</a></li>
+              <li><Link to="/about" className="text-light text-decoration-none d-block mb-1">Chi siamo</Link></li>
+              <li><Link to="/contact" className="text-light text-decoration-none d-block mb-1">Contatti</Link></li>
+              <li><Link to="/FAQ" className="text-light text-decoration-none d-block">FAQ</Link></li>
             </ul>
           </div>
 
           <div className="col-12 col-md-4 mb-4">
             <h5 className="text-uppercase mb-3">Supporto</h5>
             <ul className="list-unstyled">
-              <li><a href="/terms" className="text-light text-decoration-none d-block mb-1">Termini di servizio</a></li>
-              <li><a href="/privacy" className="text-light text-decoration-none d-block mb-1">Privacy policy</a></li>
-              <li><a href="/returns" className="text-light text-decoration-none d-block">Politica di reso</a></li>
+              <li><Link to="/terms" className="text-light text-decoration-none d-block mb-1">Termini di servizio</Link></li>
+              <li><Link to="/privacy" className="text-light text-decoration-none d-block mb-1">Privacy policy</Link></li>
+              <li><Link to="/returns" className="text-light text-decoration-none d-block">Politica di reso</Link></li>
             </ul>
           </div>
 

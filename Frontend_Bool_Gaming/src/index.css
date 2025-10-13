@@ -86,8 +86,6 @@ body {
   background-color: #ba3d03;
 }
 
-
-
 @media (max-width: 1199px) {
   .hero-bg {
     background-image: url('../hero.png');
@@ -141,7 +139,6 @@ body {
     height: 250px;
   }
 }
-
 
 @keyframes blinkEffect {
 
