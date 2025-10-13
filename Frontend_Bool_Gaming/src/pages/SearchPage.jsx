@@ -60,7 +60,7 @@ const SearchPage = () => {
               type="number"
               placeholder="Prezzo minimo"
               value={minPrice}
-               onChange={(e) => {
+              onChange={(e) => {
                 const value = e.target.value;
                 setMinPrice(value >= 0 || value === "" ? value : 0);
               }}
@@ -149,7 +149,7 @@ const SearchPage = () => {
                     )}
                     <div className="card-body">
                       <p className="card-text"><strong>{videogame.title}</strong></p>
-                      <p className="card-text"><strong>Price:</strong> {videogame.price}€</p>
+                      <p className="card-text"><strong>Prezzo:</strong> {videogame.price}€</p>
                     </div>
                   </Link>
                 </div>
