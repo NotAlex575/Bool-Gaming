@@ -147,7 +147,7 @@ export default function CartPage() {
                     </div>
                   </div>
                   {confirmRemove === it.id && (
-                    <div className={`alert alert-success mt-3 transition-opacity duration-500 position-absolute top-50 start-50 translate-middle z-index-10 ${confirmRemove ? "opacity-100" : "opacity-0"}`} role="alert">
+                    <div className={`alert alert-success alert-remove transition-opacity duration-500 ${confirmRemove ? "opacity-100" : "opacity-0"}`}role="alert">
                       <p>Sei sicuro di voler rimuovere il gioco?</p>
                       <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => { removeItem(it.id); setConfirmedRemove(null) }}>Si</button>
                       <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => setConfirmedRemove(null)}>No</button>

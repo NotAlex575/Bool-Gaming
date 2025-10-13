@@ -151,3 +151,17 @@ body {
     background-color: rgba(220, 53, 69, 0.15);
   }
 }
+
+
+
+.alert-remove {
+  position: absolute;
+  top: 50px;       
+  right: -210px;      
+  width: 300px;
+  z-index: 1050;
+  background-color: #d1e7dd; 
+  border: 1px solid #badbcc;
+  padding: 1rem;
+  border-radius: 8px;
+}
