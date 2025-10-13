@@ -7,6 +7,7 @@ const Header = () => {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isCart = location.pathname === "/cartpage";
+  const isSearch = location.pathname === "/searchpage";
   const [cartCount, setCartCount] = useState(0);
 
   const updateCartCount = () => {
@@ -114,18 +115,20 @@ const Header = () => {
                 </li>
               )}
 
-              <li className="nav-item">
-                <Link to={"/searchpage"} className="nav-link text-light">
-                  {isMobile ? (
-                    <i
-                      className="fa-solid fa-magnifying-glass fs-5"
-                      title="Search Game"
-                    ></i>
-                  ) : (
-                    <strong>Search Game</strong>
-                  )}
-                </Link>
-              </li>
+              {!isSearch && (
+                <li className="nav-item">
+                  <Link to={"/searchpage"} className="nav-link text-light">
+                    {isMobile ? (
+                      <i
+                        className="fa-solid fa-magnifying-glass fs-5"
+                        title="Search Game"
+                      ></i>
+                    ) : (
+                      <strong>Search Game</strong>
+                    )}
+                  </Link>
+                </li>
+              )}
 
               {!isCart && (
                 <li className="nav-item position-relative">

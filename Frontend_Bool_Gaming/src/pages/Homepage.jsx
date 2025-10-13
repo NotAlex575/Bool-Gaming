@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Homepage = () => {
 
-  const [videogame, setVideogame] = useState([]);
   const [chip, setChip] = useState([]);
   const [forKid, setForKid] = useState([]);
 
