@@ -85,7 +85,7 @@ const Homepage = () => {
       <div className="container mt-5">
         <div className="row gy-4">
           <div className="col-12 text-center my-5">
-            <h2 className="color-white">Under 12</h2>
+            <h2 className="color-white">PEGI 12</h2>
           </div>
           {forKid.map(c => {
             return (
@@ -113,7 +113,7 @@ const Homepage = () => {
                     )}
                     <div className="card-body">
                       <p className="card-text"><strong>{c.title}</strong></p>
-                      <p className="card-text"><strong>Price:</strong> {c.price}€</p>
+                      <p className="card-text"><strong>Prezzo:</strong> {c.price}€</p>
                     </div>
                   </Link>
                 </div>
