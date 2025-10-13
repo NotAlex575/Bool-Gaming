@@ -60,7 +60,7 @@ const DetailPage = () => {
           </div>
           <div className="card-body bg-clear mt-3 shadow">
             <div className="container">
-              <div className="py-2">
+              <div className="py-2 fs-5">
                 <h2 className="text-center mt-4"><strong>{videogame.title}</strong></h2>
                 <p><strong>Genere:</strong> {videogame.types}</p>
                 <p><strong>Pegi:</strong> {videogame.pegi}</p>
