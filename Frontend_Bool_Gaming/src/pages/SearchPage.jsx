@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
+import WelcomePopup from "../components/WelcomePopup";
 
 const SearchPage = () => {
   const [videogames, setVideogames] = useState([])
@@ -46,6 +47,7 @@ const SearchPage = () => {
 
   return (
     <>
+      <WelcomePopup />
       <div className="container">
         <div className="row gy-4">
           <div className="col-12 p-130">
