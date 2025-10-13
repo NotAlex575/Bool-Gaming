@@ -8,12 +8,12 @@ const CheckoutPage = () => {
   const [expiry, setExpiry] = useState("");
   const [cvv, setCvv] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  const [appliedPromo, setAppliedPromo] = useState(null);
+  const [appliedPromo, setAppliedPromo] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const savedPromo = JSON.parse(localStorage.getItem("promo")) || null;
+    const savedPromo = JSON.parse(localStorage.getItem("promo")) || [];
 
     if (savedCart.length === 0) {
       navigate("/cart");

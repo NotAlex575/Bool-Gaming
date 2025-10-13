@@ -93,21 +93,26 @@ export default function CartPage() {
     const code = promo.trim().toUpperCase();
 
     if (!code) {
-      setAppliedPromo({ code: "", desc: "Inserisci un codice valido" });
-      return;
-    }
-
-    if (code === "SAVE10") setAppliedPromo({ code: "SAVE10", desc: "10% fino a 10€" });
-    else if (code === "5OFF") setAppliedPromo({ code: "5OFF", desc: "5€ di sconto" });
-    else setAppliedPromo({ code: code, desc: "Coupon non valido" });
-    localStorage.setItem("promo", JSON.stringify(appliedPromo));
-    if (!code) {
       localStorage.removeItem("promo");
       setAppliedPromo({ code: "", desc: "Inserisci un codice valido" });
       return;
     }
 
+    let promoObj;
+
+    if (code === "SAVE10") {
+      promoObj = { code: "SAVE10", desc: "10% fino a 10€" };
+    } else if (code === "5OFF") {
+      promoObj = { code: "5OFF", desc: "5€ di sconto" };
+    } else {
+      promoObj = { code, desc: "Coupon non valido" };
+    }
+
+    // Aggiorna stato e localStorage con lo stesso oggetto
+    setAppliedPromo(promoObj);
+    localStorage.setItem("promo", JSON.stringify(promoObj));
   };
+
 
 
   const format = (v) => v.toFixed(2) + " €";
