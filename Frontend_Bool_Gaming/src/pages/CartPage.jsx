@@ -103,7 +103,7 @@ export default function CartPage() {
     <div className="cart-page container py-5 px-3 px-md-5">
       <div className="row">
         <div className="col-12">
-          <h1 className="cart-title mb-4 text-uppercase fw-bold border-bottom pb-2 p-130">Carrello</h1>
+          <h1 className="cart-title mb-4 text-uppercase fw-bold border-bottom pb-2 p-130 text-center fs-1">Carrello</h1>
         </div>
       </div>
 
@@ -146,13 +146,13 @@ export default function CartPage() {
                       <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} disabled={confirmRemove != null} onClick={() => setConfirmedRemove(it.id)}>Rimuovi</button>
                     </div>
                   </div>
-                 {confirmRemove === it.id && (
-                  <div className={`alert alert-success mt-3 transition-opacity duration-500 position-absolute top-50 start-50 translate-middle z-index-10 ${confirmRemove ? "opacity-100" : "opacity-0"}`} role="alert">
-                    <p>Sei sicuro di voler rimuovere il gioco?</p>
-                    <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => {removeItem(it.id); setConfirmedRemove(null)}}>Si</button>
-                    <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => setConfirmedRemove(null)}>No</button>
-                  </div>
-                )}
+                  {confirmRemove === it.id && (
+                    <div className={`alert alert-success mt-3 transition-opacity duration-500 position-absolute top-50 start-50 translate-middle z-index-10 ${confirmRemove ? "opacity-100" : "opacity-0"}`} role="alert">
+                      <p>Sei sicuro di voler rimuovere il gioco?</p>
+                      <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => { removeItem(it.id); setConfirmedRemove(null) }}>Si</button>
+                      <button className={`btn btn-outline-danger btn-sm ${highlighted === it.id ? "blink" : ""}`} onClick={() => setConfirmedRemove(null)}>No</button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))
@@ -195,11 +195,11 @@ export default function CartPage() {
               </dl>
 
               <div className="d-grid">
-                <button className="btn btn-success btn-lg w-100" disabled = {items.length === 0 || confirmRemove != null}>
-                    <Link to="/checkoutpage" disabled= {confirmRemove != null}>
+                <button className="btn btn-success btn-lg w-100" disabled={items.length === 0 || confirmRemove != null}>
+                  <Link to="/checkoutpage" disabled={confirmRemove != null}>
                     Vai al pagamento
-                    </Link>
-                  </button>
+                  </Link>
+                </button>
               </div>
 
               <div className="mt-3 small text-muted text-center">
