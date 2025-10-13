@@ -44,10 +44,15 @@ app.post("/subscribe", async (req, res) => {
     res.json({ success: true, message: "Email inviata!" });
   } catch (err) {
     console.error("❌ Errore invio email:", err);
-    res.status(500).json({ success: false, message: "Errore server" });
+    console.error("Messaggio:", err.message);
+    console.error("Stack trace:", err.stack);
+    res.status(500).json({
+      success: false,
+      message: "Errore server",
+      error: err.message
+    });
   }
 });
-
 
 const routers = require('./routes/routers');
 const notFound = require('./middlewares/routesNotFound');
