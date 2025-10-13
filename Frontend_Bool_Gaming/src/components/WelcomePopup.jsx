@@ -13,7 +13,7 @@ export default function WelcomePopup() {
       const timer = setTimeout(() => {
         setShowPopup(true);
         sessionStorage.setItem("welcomePopupShown", "true");
-      }, 3000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, []);
