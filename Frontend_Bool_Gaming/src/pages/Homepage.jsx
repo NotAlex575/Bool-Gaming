@@ -41,7 +41,7 @@ const Homepage = () => {
           </h5>
         </div>
       </div>
-      <div className="container mt-5 section-cards">
+      <div className="container mt-5 section-card-1">
         <div className="row gy-4">
           <div className="col-12 text-center my-5">
             <h2 className="text-white fw-bold">I più economici</h2>
@@ -82,7 +82,7 @@ const Homepage = () => {
           )}
         </div>
       </div>
-      <div className="container mt-5 section-cards">
+      <div className="container mt-5 section-card-2">
         <div className="row gy-4">
           <div className="col-12 text-center my-5">
             <h2 className="text-white fw-bold">PEGI 12</h2>
