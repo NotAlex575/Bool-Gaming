@@ -100,6 +100,13 @@ export default function CartPage() {
     if (code === "SAVE10") setAppliedPromo({ code: "SAVE10", desc: "10% fino a 10€" });
     else if (code === "5OFF") setAppliedPromo({ code: "5OFF", desc: "5€ di sconto" });
     else setAppliedPromo({ code: code, desc: "Coupon non valido" });
+    localStorage.setItem("promo", JSON.stringify(appliedPromo));
+    if (!code) {
+      localStorage.removeItem("promo");
+      setAppliedPromo({ code: "", desc: "Inserisci un codice valido" });
+      return;
+    }
+
   };
 
 

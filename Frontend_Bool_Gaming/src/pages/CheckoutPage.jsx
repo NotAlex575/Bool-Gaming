@@ -8,18 +8,34 @@ const CheckoutPage = () => {
   const [expiry, setExpiry] = useState("");
   const [cvv, setCvv] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [appliedPromo, setAppliedPromo] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const savedPromo = JSON.parse(localStorage.getItem("promo")) || null;
+
     if (savedCart.length === 0) {
       navigate("/cart");
     } else {
       setCart(savedCart);
+      if (savedPromo) setAppliedPromo(savedPromo);
     }
   }, [navigate]);
 
-  const total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+
+  const subtotal = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+  const shipping = subtotal > 49 || subtotal === 0 ? 0 : 2.99;
+
+  const promoDiscount = (() => {
+    if (!appliedPromo) return 0;
+    if (appliedPromo.code === "SAVE10") return Math.min(10, subtotal * 0.1);
+    if (appliedPromo.code === "5OFF") return 5;
+    return 0;
+  })();
+
+  const total = Math.max(0, subtotal + shipping - promoDiscount);
+
 
   const handlePayment = (e) => {
     e.preventDefault();
@@ -72,6 +88,21 @@ const CheckoutPage = () => {
                 <span className='col-2'>€ {item.price}</span>
               </div>
             ))}
+
+            <div className="d-flex justify-content-between border-bottom py-2">
+              <span>Totale parziale</span>
+              <span>€ {subtotal.toFixed(2)}</span>
+            </div>
+
+            <div className="d-flex justify-content-between border-bottom py-2">
+              <span>Spedizione</span>
+              <span>{shipping === 0 ? "Gratis" : `€ ${shipping.toFixed(2)}`}</span>
+            </div>
+
+            <div className="d-flex justify-content-between border-bottom py-2">
+              <span>Sconto</span>
+              <span>{promoDiscount > 0 ? `- € ${promoDiscount.toFixed(2)}` : "-"}</span>
+            </div>
 
             <div className="d-flex justify-content-between fw-bold py-2">
               <span>Totale</span>
