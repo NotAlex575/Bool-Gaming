@@ -20,6 +20,11 @@ body {
   background-color: #0f0f0f;
 }
 
+.section-cards {
+  min-height: 800px;
+  overflow: hidden;
+}
+
 .card {
   border-radius: 0 !important;
 }
@@ -27,6 +32,7 @@ body {
 .card-game:hover {
   transition: 0.25s;
   transform: scale(1.05);
+  z-index: 10;
 }
 
 .color-white {
