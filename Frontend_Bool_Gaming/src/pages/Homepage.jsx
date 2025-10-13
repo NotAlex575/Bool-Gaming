@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import WelcomePopup from "../components/WelcomePopup";
 
 
 const Homepage = () => {
@@ -33,6 +34,7 @@ const Homepage = () => {
 
   return (
     <>
+      <WelcomePopup />
       <div className="d-flex justify-content-center align-items-center text-center hero-bg pt-5">
         <div className="text-white pt-5">
           <h1 className="mb-4 fw-bold">Benvenuto in BOOLGAMING!</h1>
