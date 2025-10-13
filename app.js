@@ -25,7 +25,7 @@ transporter.verify((error, success) => {
   else console.log("✅ Server SMTP pronto per inviare email");
 });
 
-app.post("/api/subscribe", async (req, res) => {
+app.post("/subscribe", async (req, res) => {
   const { email } = req.body;
 
   if (!email) {
