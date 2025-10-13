@@ -75,14 +75,14 @@ const Header = () => {
     <header className={`${isMobile ? "position-static" : "fixed-top"}`}>
       <nav
         className={`navbar navbar-expand-lg transition-all ${isHome
-          ? scrolled
-            ? "bg-navbar shadow-sm"
-            : "bg-transparent"
-          : "bg-navbar shadow-sm"
+            ? scrolled
+              ? "bg-navbar shadow-sm"
+              : "bg-transparent"
+            : "bg-navbar shadow-sm"
           }`}
       >
         <div className="container-fluid ms-4 me-4">
-          <Link to={"/"} className="navbar-brand text-light">
+          <Link to={"/"} className="navbar-brand text-light fw-bold text-shadow">
             <img className="logo" src="../Bool.png" alt="Logo" />
           </Link>
 
@@ -99,17 +99,17 @@ const Header = () => {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav ms-auto d-flex align-items-end pe-3">
+            <ul className="navbar-nav ms-auto d-flex align-items-end pe-3 fw-bold">
               {!isHome && (
                 <li className="nav-item">
-                  <Link to={"/"} className="nav-link text-light">
+                  <Link to={"/"} className="nav-link text-light text-shadow">
                     {isMobile ? (
                       <i
                         className="fa-solid fa-house fs-5 fw-bold"
                         title="Home"
                       ></i>
                     ) : (
-                      <strong>Home</strong>
+                      "Home"
                     )}
                   </Link>
                 </li>
@@ -117,14 +117,17 @@ const Header = () => {
 
               {!isSearch && (
                 <li className="nav-item">
-                  <Link to={"/searchpage"} className="nav-link text-light">
+                  <Link
+                    to={"/searchpage"}
+                    className="nav-link text-light text-shadow"
+                  >
                     {isMobile ? (
                       <i
-                        className="fa-solid fa-magnifying-glass fs-5 "
+                        className="fa-solid fa-magnifying-glass fs-5 fw-bold"
                         title="Search Game"
                       ></i>
                     ) : (
-                      <strong>Cerca giochi</strong>
+                      "Cerca giochi"
                     )}
                   </Link>
                 </li>
@@ -134,12 +137,12 @@ const Header = () => {
                 <li className="nav-item position-relative">
                   <Link
                     to={"/cartpage"}
-                    className="nav-link text-light d-flex align-items-center"
+                    className="nav-link text-light text-shadow d-flex align-items-center"
                   >
                     {isMobile ? (
-                      <i className="fa-solid fa-cart-shopping fs-5"></i>
+                      <i className="fa-solid fa-cart-shopping fs-5 fw-bold"></i>
                     ) : (
-                      <strong>Vai al carrello</strong>
+                      "Vai al carrello"
                     )}
                     {cartCount > 0 && (
                       <span className="badge bg-danger ms-1">{cartCount}</span>
