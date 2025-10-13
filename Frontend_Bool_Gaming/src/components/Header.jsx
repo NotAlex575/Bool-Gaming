@@ -124,7 +124,7 @@ const Header = () => {
                         title="Search Game"
                       ></i>
                     ) : (
-                      <strong>Search Game</strong>
+                      <strong>Cerca giochi</strong>
                     )}
                   </Link>
                 </li>
@@ -139,7 +139,7 @@ const Header = () => {
                     {isMobile ? (
                       <i className="fa-solid fa-cart-shopping fs-5"></i>
                     ) : (
-                      <strong>Go to cart</strong>
+                      <strong>Vai al carrello</strong>
                     )}
                     {cartCount > 0 && (
                       <span className="badge bg-danger ms-1">{cartCount}</span>
