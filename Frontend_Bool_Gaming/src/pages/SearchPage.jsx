@@ -60,7 +60,7 @@ const SearchPage = () => {
             <input
               id="minPrice"
               type="number"
-              placeholder="Inserisci prezzo minimo"
+              placeholder="Prezzo minimo"
               value={minPrice}
               onChange={(e) => {
                 const value = e.target.value;
@@ -74,7 +74,7 @@ const SearchPage = () => {
             <input
               id="maxPrice"
               type="number"
-              placeholder="Inserisci prezzo massimo"
+              placeholder="Prezzo massimo"
               value={maxPrice}
               onChange={(e) => {
                 const value = e.target.value;
