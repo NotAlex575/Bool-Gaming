@@ -39,7 +39,9 @@ app.post("/subscribe", async (req, res) => {
       from: '"Il mio sito" <no-reply@tuodominio.com>',
       to: email,
       subject: "Benvenuto!",
-      html: `<h1>Ciao ${email}!</h1><p>Grazie per esserti iscritto al nostro sito 🎉</p>`,
+      html: `<h1>Ciao ${email}!</h1><p>Grazie per esserti iscritto al nostro sito 🎉. <br/>
+      Ecco a te un codice sconto! [SAVE10]
+      </p>`,
     });
 
     console.log("📤 Email inviata:", info.messageId);

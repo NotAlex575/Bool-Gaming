@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import WelcomePopup from "../components/WelcomePopup";
 
 const DetailPage = () => {
   const { slug } = useParams();
@@ -43,55 +44,58 @@ const DetailPage = () => {
   };
 
   return (
-    <div className="container p-130">
-      <div className="row gy-3 mt-5">
-        <div className="col-12 col-md-6">
-          <div className="card medium-card">
-            <img src={`${API_URL}img/videogames/${videogame.image}`} className="img-fluid" />
-          </div>
-        </div>
-        <div className="col-12 col-md-6">
-          <div className="ratio ratio-16x9">
-            <iframe
-              src={videogame.trailer_url?.split("&")[0]}
-              title="YouTube video"
-              allowFullScreen
-            />
-          </div>
-          <div className="card-body bg-clear mt-3 shadow">
-            <div className="container">
-              <div className="py-2 fs-5">
-                <h2 className="text-center mt-4"><strong>{videogame.title}</strong></h2>
-                <p><strong>Genere:</strong> {videogame.types}</p>
-                <p><strong>Pegi:</strong> {videogame.pegi}</p>
-                <p><strong>Data d'uscita:</strong> {videogame.release_date?.split("T")[0]}</p>
-                <p><strong>Descrizione:</strong> {videogame.description}</p>
-                <p><strong>Prezzo:</strong> {videogame.price}€</p>
-              </div>
+    <>
+      <WelcomePopup />
+      <div className="container p-130">
+        <div className="row gy-3 mt-5">
+          <div className="col-12 col-md-6">
+            <div className="card medium-card">
+              <img src={`${API_URL}img/videogames/${videogame.image}`} className="img-fluid" />
             </div>
           </div>
-          <button onClick={addToCart} className="btn btn-success mt-3">
-            Aggiungi al carrello
-          </button>
+          <div className="col-12 col-md-6">
+            <div className="ratio ratio-16x9">
+              <iframe
+                src={videogame.trailer_url?.split("&")[0]}
+                title="YouTube video"
+                allowFullScreen
+              />
+            </div>
+            <div className="card-body bg-clear mt-3 shadow">
+              <div className="container">
+                <div className="py-2 fs-5">
+                  <h2 className="text-center mt-4"><strong>{videogame.title}</strong></h2>
+                  <p><strong>Genere:</strong> {videogame.types}</p>
+                  <p><strong>Pegi:</strong> {videogame.pegi}</p>
+                  <p><strong>Data d'uscita:</strong> {videogame.release_date?.split("T")[0]}</p>
+                  <p><strong>Descrizione:</strong> {videogame.description}</p>
+                  <p><strong>Prezzo:</strong> {videogame.price}€</p>
+                </div>
+              </div>
+            </div>
+            <button onClick={addToCart} className="btn btn-success mt-3">
+              Aggiungi al carrello
+            </button>
 
-          <div
-            className={`alert alert-success mt-3 transition-opacity duration-500 ${successMessage ? "opacity-100" : "opacity-0"
-              }`}
-            role="alert"
-          >
-            Gioco aggiunto al carrello!
+            <div
+              className={`alert alert-success mt-3 transition-opacity duration-500 ${successMessage ? "opacity-100" : "opacity-0"
+                }`}
+              role="alert"
+            >
+              Gioco aggiunto al carrello!
+            </div>
           </div>
         </div>
-      </div>
 
-      <style>
-        {`
+        <style>
+          {`
           .transition-opacity {
             transition: opacity 0.5s ease-in-out;
           }
         `}
-      </style>
-    </div>
+        </style>
+      </div>
+    </>
   );
 };
 
