@@ -34,7 +34,7 @@ const Homepage = () => {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center text-center hero-bg pt-5">
-        <div className="text-secondary-emphasis pt-5">
+        <div className="text-white pt-5">
           <h1 className="mb-4 fw-bold">Benvenuto in BOOLGAMING!</h1>
           <h5 className="fw-bold">
             Non vendiamo sogni...ma giochi di QUALITA'!
@@ -44,7 +44,7 @@ const Homepage = () => {
       <div className="container mt-5">
         <div className="row gy-4">
           <div className="col-12 text-center my-5">
-            <h2 className="fw-bold">I più economici</h2>
+            <h2 className="text-white">I più economici</h2>
           </div>
           {chip.map(c => {
             return (
@@ -85,7 +85,7 @@ const Homepage = () => {
       <div className="container mt-5">
         <div className="row gy-4">
           <div className="col-12 text-center my-5">
-            <h2 className="fw-bold">PEGI 12</h2>
+            <h2 className="text-white">PEGI 12</h2>
           </div>
           {forKid.map(c => {
             return (
