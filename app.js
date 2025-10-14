@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv')
-const path = require('path');
+const Stripe = require('stripe');
 
 dotenv.config();
 
@@ -57,6 +57,33 @@ app.post("/subscribe", async (req, res) => {
     });
   }
 });
+
+//stripe
+
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
+app.post('/create-payment', async (req, res) => {
+  try {
+    const { items = [], currency = 'eur' } = req.body;
+
+    const subtotal = (items || []).reduce((acc, it) => acc + (it.price || 0) * (it.qty || 1), 0);
+    const shipping = subtotal > 49 || subtotal === 0 ? 0 : 2.99;
+    const total = Math.max(0, subtotal + shipping);
+    const amount = Math.round(total * 100);
+
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency,
+      metadata: { integration_check: 'accept_a_payment' }
+    });
+
+    res.json({ clientSecret: paymentIntent.client_secret, amount });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 const routers = require('./routes/routers');
 const notFound = require('./middlewares/routesNotFound');
