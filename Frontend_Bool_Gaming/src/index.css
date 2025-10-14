@@ -193,3 +193,12 @@ body {
 .text-shadow {
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
 }
+
+/* Nasconde solo il pulsante "Usa dati link" in Chrome e Safari */
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-autofill-button {
+  visibility: hidden !important;
+  display: none !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
