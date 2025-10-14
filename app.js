@@ -84,6 +84,62 @@ app.post('/create-payment', async (req, res) => {
   }
 });
 
+app.post('/send-receipt', async (req, res) => {
+  const { name, total, items } = req.body;
+
+  if (!name || !total || !items || items.length === 0) {
+    return res.status(400).json({ success: false, message: 'Dati insufficienti per inviare la ricevuta.' });
+  }
+
+  // Crea la tabella dei prodotti in HTML
+  const itemsHtml = items
+    .map(
+      (item) => `
+        <tr>
+          <td>${item.title}</td>
+          <td style="text-align:center;">${item.qty}</td>
+          <td style="text-align:right;">€ ${(item.price * item.qty).toFixed(2)}</td>
+        </tr>
+      `
+    )
+    .join('');
+
+  const htmlReceipt = `
+    <div style="font-family:Arial, sans-serif; padding:20px;">
+      <h2>🧾 Ricevuta di pagamento</h2>
+      <p>Ciao <strong>${name}</strong>, grazie per il tuo acquisto!</p>
+      <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+        <thead>
+          <tr style="border-bottom:1px solid #ccc;">
+            <th style="text-align:left;">Articolo</th>
+            <th style="text-align:center;">Quantità</th>
+            <th style="text-align:right;">Prezzo</th>
+          </tr>
+        </thead>
+        <tbody>${itemsHtml}</tbody>
+      </table>
+      <p style="margin-top:20px; font-size:1.2em;"><strong>Totale pagato:</strong> € ${total}</p>
+      <p>Il tuo pagamento è stato elaborato con successo 🎮</p>
+    </div>
+  `;
+
+  try {
+    const info = await transporter.sendMail({
+      from: '"Bool Gaming" <no-reply@boolgaming.com>',
+      to: process.env.TEST_RECEIVER || 'test@mailtrap.io', // Puoi anche passare qui l'email dell’utente se la vuoi gestire dopo
+      subject: 'Ricevuta di pagamento - Bool Gaming',
+      html: htmlReceipt,
+    });
+
+    console.log("📤 Email ricevuta inviata:", info.messageId);
+    res.json({ success: true, message: 'Ricevuta inviata via email!' });
+  } catch (err) {
+    console.error("❌ Errore invio ricevuta:", err);
+    res.status(500).json({ success: false, message: 'Errore durante l’invio della ricevuta.' });
+  }
+});
+
+
 
 const routers = require('./routes/routers');
 const notFound = require('./middlewares/routesNotFound');

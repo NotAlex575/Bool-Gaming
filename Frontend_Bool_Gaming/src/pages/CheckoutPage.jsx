@@ -8,7 +8,7 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 // --- Component che contiene il form Stripe ---
-const StripePaymentForm = ({ cart, name, setName, onSuccess, setShowAlert }) => {
+const StripePaymentForm = ({ cart, name, setName, onSuccess, setShowAlert, total }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
@@ -52,12 +52,23 @@ const StripePaymentForm = ({ cart, name, setName, onSuccess, setShowAlert }) => 
       }
 
       if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
-        setShowAlert(true);
-        localStorage.removeItem('cart');
-        onSuccess && onSuccess();
-      } else {
-        setError('Pagamento non completato.');
-      }
+      // invia i dati per la ricevuta
+      await fetch('https://bool-gaming-backend-nu.vercel.app/send-receipt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          total: total.toFixed(2), // totale già calcolato in CheckoutPage
+          items: cart,
+        }),
+      });
+
+      setShowAlert(true);
+      localStorage.removeItem('cart');
+      onSuccess && onSuccess();
+    } else {
+      setError('Pagamento non completato.');
+    }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -208,6 +219,7 @@ const CheckoutPage = () => {
               <StripePaymentForm
                 cart={cart}
                 name={name}
+                total={total}
                 setName={setName}
                 setShowAlert={setShowAlert}
                 onSuccess={() => {}}
