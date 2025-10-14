@@ -85,13 +85,12 @@ app.post('/create-payment', async (req, res) => {
 });
 
 app.post('/send-receipt', async (req, res) => {
-  const { name, total, items } = req.body;
+  const { name, total, items, promoCode } = req.body;
 
   if (!name || !total || !items || items.length === 0) {
     return res.status(400).json({ success: false, message: 'Dati insufficienti per inviare la ricevuta.' });
   }
 
-  // Crea la tabella dei prodotti in HTML
   const itemsHtml = items
     .map(
       (item) => `
@@ -103,6 +102,10 @@ app.post('/send-receipt', async (req, res) => {
       `
     )
     .join('');
+
+  const promoRow = promoCode
+    ? `<p style="margin-top:10px;">💸 <strong>Codice sconto applicato:</strong> ${promoCode}</p>`
+    : '';
 
   const htmlReceipt = `
     <div style="font-family:Arial, sans-serif; padding:20px;">
@@ -119,6 +122,7 @@ app.post('/send-receipt', async (req, res) => {
         <tbody>${itemsHtml}</tbody>
       </table>
       <p style="margin-top:20px; font-size:1.2em;"><strong>Totale pagato:</strong> € ${total}</p>
+      ${promoRow}
       <p>Il tuo pagamento è stato elaborato con successo 🎮</p>
     </div>
   `;
@@ -126,7 +130,7 @@ app.post('/send-receipt', async (req, res) => {
   try {
     const info = await transporter.sendMail({
       from: '"Bool Gaming" <no-reply@boolgaming.com>',
-      to: process.env.TEST_RECEIVER || 'test@mailtrap.io', // Puoi anche passare qui l'email dell’utente se la vuoi gestire dopo
+      to: process.env.TEST_RECEIVER || 'test@mailtrap.io',
       subject: 'Ricevuta di pagamento - Bool Gaming',
       html: htmlReceipt,
     });
@@ -138,6 +142,7 @@ app.post('/send-receipt', async (req, res) => {
     res.status(500).json({ success: false, message: 'Errore durante l’invio della ricevuta.' });
   }
 });
+
 
 
 

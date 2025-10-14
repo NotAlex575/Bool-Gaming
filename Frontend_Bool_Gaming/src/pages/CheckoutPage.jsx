@@ -8,7 +8,7 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 // --- Component che contiene il form Stripe ---
-const StripePaymentForm = ({ cart, name, setName, onSuccess, setShowAlert, total }) => {
+const StripePaymentForm = ({ cart, name, setName, onSuccess, setShowAlert, total, promoCode }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
@@ -60,6 +60,7 @@ const StripePaymentForm = ({ cart, name, setName, onSuccess, setShowAlert, total
           name,
           total: total.toFixed(2), // totale già calcolato in CheckoutPage
           items: cart,
+          promoCode
         }),
       });
 
@@ -219,6 +220,7 @@ const CheckoutPage = () => {
               <StripePaymentForm
                 cart={cart}
                 name={name}
+                promoCode={appliedPromo?.code || null}
                 total={total}
                 setName={setName}
                 setShowAlert={setShowAlert}
