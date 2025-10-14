@@ -43,7 +43,9 @@ const SearchPage = () => {
     return matchesSearch && matchesMinPrice && matchesMaxPrice && matchesPegi && matchesType;
   });
 
-  useEffect(fetchVideogames, [filteredGames])
+  useEffect(() => {
+    fetchVideogames();
+  }, []);
 
   return (
     <>
