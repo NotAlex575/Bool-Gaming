@@ -27,7 +27,7 @@ const StripePaymentForm = ({ cart, name, setName, onSuccess, setShowAlert }) => 
     setLoading(true);
     try {
       // 1) Chiedo al backend di creare il PaymentIntent
-      const resp = await fetch('http://localhost:3000/create-payment', {
+      const resp = await fetch('https://bool-gaming-backend-nu.vercel.app/create-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: cart }),
