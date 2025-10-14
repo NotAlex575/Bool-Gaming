@@ -166,17 +166,6 @@ const CheckoutPage = () => {
             <h1 className="text-center mt-3">Checkout</h1>
           </div>
 
-          {/* Alert di successo */}
-          <div
-            className={`alert alert-success text-center transition-opacity fade ${showAlert ? 'opacity-100' : 'opacity-0'}`}
-            role="alert"
-          >
-            <span>Pagamento completato con successo</span>
-            <button className="btn btn-sm btn-light ms-3" onClick={handleconfirmedRedirect}>
-              OK
-            </button>
-          </div>
-
           {/* Riepilogo carrello */}
           <div className="col-12 col-lg-8">
             <div className="card p-4">
@@ -227,6 +216,16 @@ const CheckoutPage = () => {
                 onSuccess={() => {}}
               />
             </div>
+             {/* Alert di successo */}
+          <div
+            className={`alert alert-success text-center transition-opacity fade ${showAlert ? 'opacity-100' : 'opacity-0'} mt-2`}
+            role="alert"
+          >
+            <span>Pagamento completato con successo</span>
+            <button className="btn btn-sm btn-light ms-3" onClick={handleconfirmedRedirect}>
+              OK
+            </button>
+          </div>
           </div>
         </div>
       </div>

@@ -36,11 +36,12 @@ app.post("/subscribe", async (req, res) => {
 
   try {
     const info = await transporter.sendMail({
-      from: '"Il mio sito" <no-reply@tuodominio.com>',
+      from: '"boolgaming.com" <no-reply@tuodominio.com>',
       to: email,
       subject: "Benvenuto!",
       html: `<h1>Ciao ${email}!</h1><p>Grazie per esserti iscritto al nostro sito 🎉. <br/>
-      Ecco a te un codice sconto! [SAVE10]
+      Ecco a te un codice sconto! [SAVE10] <br/>
+      Grazie per aver scelto boolgaming!
       </p>`,
     });
 
@@ -129,7 +130,7 @@ app.post('/send-receipt', async (req, res) => {
 
   try {
     const info = await transporter.sendMail({
-      from: '"Bool Gaming" <no-reply@boolgaming.com>',
+      from: '"boolgaming.com" <no-reply@boolgaming.com>',
       to: process.env.TEST_RECEIVER || 'test@mailtrap.io',
       subject: 'Ricevuta di pagamento - Bool Gaming',
       html: htmlReceipt,
